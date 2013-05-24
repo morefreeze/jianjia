@@ -8,6 +8,7 @@ attr_name = {}
 attr_num = {}
 
 ]]--
+
 -- show character board of given character
 show_character_content = function(ctr)
     -- save local language for every elem

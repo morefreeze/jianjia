@@ -64,7 +64,6 @@ ScreenGame = {
 					end
                 elseif key == _b'C' then
                     if data.ch[1] then
-                        theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
                         show_character_content(data.ch[1])
                     end
                 end

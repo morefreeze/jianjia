@@ -1,4 +1,13 @@
+--[[
+bar_name = {}
+bar_view_max = {}
+bar_view = {}
+bar_mark = {}
 
+attr_name = {}
+attr_num = {}
+
+]]--
 -- show character board of given character
 show_character_content = function(ctr)
     -- save local language for every elem
@@ -34,64 +43,69 @@ show_character_content = function(ctr)
         x=6, y=6,
     }
 
+    for i = 1, 10 do
+        --screenCharacter.bar_name[1] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[bar_order[1]])
+        ScreenCharacter.scr:AddView(ScreenCharacter.bar_name)
+    end
+    --collectgarbage('collect')
+    --[[
     for i = 1,#bar_order,2 do
         local k = bar_order[i]
         local v = ctr[k]
         local k_max = bar_order[i+1]
         local v_max = ctr[k_max]
-        print(ctr.level)
-        print(v,v_max)
         -- show bar name
-        local bar_name
         if bar_text[k] then
-            bar_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[k])
+            bar_name[(i+1)/2] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[k])
         else
-            bar_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", _"N/A")
+            bar_name[(i+1)/2] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", _"N/A")
         end
-        bar_name:SetTextColor(1,0,0):SetPosition(bar_box.x, bar_box.y - i*1):SetHUD(true)
-        ScreenCharacter.scr:AddView(bar_name)
+        bar_name[(i+1)/2]:SetTextColor(1,0,0):SetPosition(bar_box.x, bar_box.y - i*1):SetHUD(true)
+        ScreenCharacter.scr:AddView(bar_name[(i+1)/2])
         local bar_x = bar_box.x + 2
         -- show the whole bar
-        local bar_view_max = flux.View(ScreenCharacter.scr, nil)
-        bar_view_max:SetSize(bar_box.w, bar_box.h):SetAlign(flux.ALIGN_LEFT)
-        bar_view_max:SetColor(bar_color[(i+1)/2][1], bar_color[(i+1)/2][2], bar_color[(i+1)/2][3], 0.3)
-        bar_view_max:SetPosition(bar_x, bar_box.y-i*1):SetHUD(true)
-        ScreenCharacter.scr:AddView(bar_view_max)
+        bar_view_max[(i+1)/2] = flux.View(ScreenCharacter.scr, nil)
+        bar_view_max[(i+1)/2]:SetSize(bar_box.w, bar_box.h):SetAlign(flux.ALIGN_LEFT)
+        bar_view_max[(i+1)/2]:SetColor(bar_color[(i+1)/2][1], bar_color[(i+1)/2][2], bar_color[(i+1)/2][3], 0.3)
+        bar_view_max[(i+1)/2]:SetPosition(bar_x, bar_box.y-i*1):SetHUD(true)
+        ScreenCharacter.scr:AddView(bar_view_max[(i+1)/2])
         -- show the current bar
-        local bar_view = flux.View(ScreenCharacter.scr, nil)
-        bar_view:SetSize(bar_box.w*(v/v_max), bar_box.h):SetAlign(flux.ALIGN_LEFT)
-        bar_view:SetColor(bar_color[(i+1)/2][1], bar_color[(i+1)/2][2], bar_color[(i+1)/2][3], 0.7)
-        bar_view:SetPosition(bar_x, bar_box.y-i*1):SetHUD(true)
-        ScreenCharacter.scr:AddView(bar_view)
-        local bar_mark = flux.View(ScreenCharacter.scr, nil)
-        bar_mark:SetSize(0.1, bar_box.h):SetAlign(flux.ALIGN_LEFT)
-        bar_mark:SetColor(0,0,0)
-        bar_mark:SetPosition(bar_x+bar_box.w*(v/v_max), bar_box.y-i*1):SetHUD(true)
-        ScreenCharacter.scr:AddView(bar_mark)
+        bar_view[(i+1)/2] = flux.View(ScreenCharacter.scr, nil)
+        bar_view[(i+1)/2]:SetSize(bar_box.w*(v/v_max), bar_box.h):SetAlign(flux.ALIGN_LEFT)
+        bar_view[(i+1)/2]:SetColor(bar_color[(i+1)/2][1], bar_color[(i+1)/2][2], bar_color[(i+1)/2][3], 0.7)
+        bar_view[(i+1)/2]:SetPosition(bar_x, bar_box.y-i*1):SetHUD(true)
+        ScreenCharacter.scr:AddView(bar_view[(i+1)/2])
+        bar_mark[(i+1)/2] = flux.View(ScreenCharacter.scr, nil)
+        bar_mark[(i+1)/2]:SetSize(0.1, bar_box.h):SetAlign(flux.ALIGN_LEFT)
+        bar_mark[(i+1)/2]:SetColor(0,0,0)
+        bar_mark[(i+1)/2]:SetPosition(bar_x+bar_box.w*(v/v_max), bar_box.y-i*1):SetHUD(true)
+        ScreenCharacter.scr:AddView(bar_mark[(i+1)/2])
     end
-    local attr_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", _"ÊôÐÔ")
-    attr_name:SetTextColor(1,0,0):SetPosition(6, 6):SetHUD(true)
-    ScreenCharacter.scr:AddView(attr_name)
+    local attr_tit_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", _"ÊôÐÔ")
+    attr_tit_name:SetTextColor(1,0,0):SetPosition(6, 6):SetHUD(true)
+    ScreenCharacter.scr:AddView(attr_tit_name)
+
     for i = 1,#attr_order,1 do
         local k = attr_order[i]
         local v = ctr[k]
-        local attr_name
         if attr_text[k] then
-            attr_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", attr_text[k])
+            attr_name[(i+1)/2] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", attr_text[k])
         else
-            attr_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", _"N/A")
+            attr_name[(i+1)/2] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", _"N/A")
         end
-        local attr_num
+        
         if v then 
-            attr_num = flux.TextView(ScreenCharacter.scr, nil, "wqyL", v)
+            attr_num[(i+1)/2] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", v)
         else
-            attr_num = flux.TextView(ScreenCharacter.scr, nil, "wqyL", "N/A")
+            attr_num[(i+1)/2] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", "N/A")
         end
-        attr_name:SetTextColor(1,0,0):SetPosition(attr_box.x, attr_box.y - i*2):SetHUD(true)
-        attr_num:SetTextColor(0,0,1):SetPosition(attr_box.x+2, attr_box.y - i*2):SetHUD(true)
-        ScreenCharacter.scr:AddView(attr_name)
-        ScreenCharacter.scr:AddView(attr_num)
+        attr_name[(i+1)/2]:SetTextColor(1,0,0):SetPosition(attr_box.x, attr_box.y - i*2):SetHUD(true)
+        attr_num[(i+1)/2]:SetTextColor(0,0,1):SetPosition(attr_box.x+2, attr_box.y - i*2):SetHUD(true)
+        ScreenCharacter.scr:AddView(attr_name[(i+1)/2])
+        ScreenCharacter.scr:AddView(attr_num[(i+1)/2])
     end
+    ]]--
+    theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
 end
 
 ScreenCharacter = {
@@ -122,6 +136,8 @@ ScreenCharacter = {
 
             ScreenCharacter.splash = flux.View(this)
             ScreenCharacter.splash:SetSize(32, 24):SetColor(0,0,0)
+
+            ScreenCharacter.bar_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", "hehe")
 
             -- ×¢²á°´¼ü
             -- this:RegKey(_b'Z')

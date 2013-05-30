@@ -10,46 +10,20 @@ attr_num = {}
 ]]--
 
 -- show character board of given character
-show_character_content = function(ctr)
-    -- save local language for every elem
-    local attr_text = {strength=_"力量", agility=_"敏捷", intelligence=_"智力", 
-        spellpower=_"魔能", endurance=_"耐力", will=_"意志",}
+show_character = function(ctr)
 
-    local bar_text = {hp=_"生命", mp=_"魔法", exp=_"经验",}
-    local bar_order = {
-        "hp",
-        "hp_max",
-        "mp",
-        "mp_max",
-        "exp",
-        "exp_max",
-    }
-    local attr_order = {
-        "strength",
-        "agility",
-        "intelligence",
-        "spellpower",
-        "endurance",
-        "will",
-    }
-    local bar_color = {
-        {1,0,0}, -- red
-        {0,0,1}, -- blue
-        {0.92,0.92,0.06}, -- yellow
-    }
-    local bar_box = {
-        x=-4, y=10, w=6, h=1,
-    }
-    local attr_box = {
-        x=6, y=6,
-    }
 
-    for i = 1, 10 do
-        --screenCharacter.bar_name[1] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[bar_order[1]])
-        ScreenCharacter.scr:AddView(ScreenCharacter.bar_name)
-    end
-    --collectgarbage('collect')
+    ScreenCharacter.new()
     --[[
+    collectgarbage('collect')
+    print(ctr_view)
+    for i = 1, 1 do
+        --screenCharacter.bar_name[1] = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[bar_order[1] ])
+        --ScreenCharacter.scr:AddView(ScreenCharacter.bar_name)
+        ctr_view.bar_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[bar_order[1] ])
+    print(ctr_view.bar_name)
+        ScreenCharacter.scr:AddView(ctr_view.bar_name)
+    end
     for i = 1,#bar_order,2 do
         local k = bar_order[i]
         local v = ctr[k]
@@ -109,6 +83,64 @@ show_character_content = function(ctr)
     theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
 end
 
+local function CreateCharacterBoard(ctr)
+    local ctr_view = {}
+    function ctr_view.new()
+        
+        -- save local language for every elem
+        local attr_text = {strength=_"力量", agility=_"敏捷", intelligence=_"智力", 
+            spellpower=_"魔能", endurance=_"耐力", will=_"意志",}
+
+        local bar_text = {hp=_"生命", mp=_"魔法", exp=_"经验",}
+        local bar_order = {
+            "hp",
+            "hp_max",
+            "mp",
+            "mp_max",
+            "exp",
+            "exp_max",
+        }
+        print('2')
+        local attr_order = {
+            "strength",
+            "agility",
+            "intelligence",
+            "spellpower",
+            "endurance",
+            "will",
+        }
+        local bar_color = {
+            {1,0,0}, -- red
+            {0,0,1}, -- blue
+            {0.92,0.92,0.06}, -- yellow
+        }
+        local bar_box = {
+            x=-4, y=10, w=6, h=1,
+        }
+        local attr_box = {
+            x=6, y=6,
+        }
+
+        ctr_view.bg = flux.View(this)
+        ctr_view.bg:SetHUD(true):SetSize(32, 24)
+        ScreenCharacter.scr:AddView(ctr_view.bg)
+
+        ctr_view.bar_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", bar_text[bar_order[1] ])
+        ctr_view.bar_name:SetHUD(true)
+        ctr_view.bar_name:SetSize(2, 2.5)
+        --ctr_view.bar_name:SetColor(0, 0, 0)
+        ctr_view.bar_name:SetPosition(0,-2)
+        ScreenCharacter.scr:AddView(ctr_view.bar_name)
+        
+        print('1')
+        collectgarbage('collect')
+        print('3')
+    end
+    ctr_view.new()
+    print(ctr_view)
+    return ctr_view
+end
+
 ScreenCharacter = {
 
     new = function()
@@ -118,8 +150,8 @@ ScreenCharacter = {
         
         -- OnPush 事件
         ScreenCharacter.scr:lua_OnPush(wrap(function(this)
-            ScreenCharacter.splash:FadeOut(0.9):AnimDo()
-
+            --ScreenCharacter.splash:FadeOut(0.9):AnimDo()
+            print("on push")
         end))
         -- 按键响应
         ScreenCharacter.scr:lua_KeyInput(wrap(function(this, key, state)
@@ -133,12 +165,10 @@ ScreenCharacter = {
         ScreenCharacter.scr:lua_Init(wrap(function(this)
 
             -- 生成控件
-            ScreenCharacter.bg = flux.View(this):SetHUD(true):SetSize(32, 24)
+            --ScreenCharacter.bg = flux.View(this):SetHUD(true):SetSize(32, 24)
 
-            ScreenCharacter.splash = flux.View(this)
-            ScreenCharacter.splash:SetSize(32, 24):SetColor(0,0,0)
-
-            ScreenCharacter.bar_name = flux.TextView(ScreenCharacter.scr, nil, "wqyL", "hehe")
+            --ScreenCharacter.splash = flux.View(this)
+            --ScreenCharacter.splash:SetSize(32, 24):SetColor(0,0,0)
 
             -- 注册按键
             -- this:RegKey(_b'Z')
@@ -149,9 +179,10 @@ ScreenCharacter = {
             this:RegKey(flux.GLFW_KEY_UP)
             this:RegKey(flux.GLFW_KEY_DOWN)
 
-            this:AddView(ScreenCharacter.bg)
+            --this:AddView(ScreenCharacter.bg)
             -- this:AddView(ScreenCharacter.splash)
-            
+            CreateCharacterBoard(data.ch[1])
+
         end))
 
     end,

@@ -67,8 +67,8 @@ ScreenGame = {
                 if key == flux.GLFW_KEY_ESC then
                     -- MsgBox(101, "是否想要回到标题页面？")
                 elseif key == _b'C' then
-                    if data.ch[1] then
-                        show_character_content(data.ch[1])
+                    if (data.ch[1]) then
+                        show_character(data.ch[1])
                     end
                 elseif key == _b'B' then
                     ScreenGame.player:Reset()

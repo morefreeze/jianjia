@@ -141,6 +141,7 @@ local function createFightPlayerBoard()
         fight_player_board.mp_bar:SetSize(3, 0.2)
         fight_player_board.mp_bar:SetPosition(11.1, -9)
         ScreenFight.scr:AddView(fight_player_board.mp_bar)
+        collectgarbage('collect')
     end
 
     function fight_player_board.refurbish(player)

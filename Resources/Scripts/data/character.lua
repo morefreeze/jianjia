@@ -18,6 +18,8 @@ Character = Class(function(self, name, txt)
             spellpower = 5,
             endurance = 5,
             will = 5,
+            -- attribute points
+            points = 10,
             spells = {},
             equip = {},
         }
@@ -216,6 +218,11 @@ function Character:GetLevel(exp)
     return math.ceil(math.sqrt(math.sqrt(exp + 1)))
 end
 
+-- get the exp to next level
+function Character:GetLevelExp(cur_lv)
+    return math.pow(cur_lv+1, 4) - 1
+end
+
 -- 根据等级更新人物属性
 function Character:UpdateBaseAttr()
 
@@ -231,6 +238,10 @@ function Character:UpdateBaseAttr()
 
     -- 蓝量 = 90 + 魔能 * 25 + 等级 * 10
     ex.mp_max = 90 + self:GetAttr('spellpower') * 25 + self:GetAttr('level') * 10
+
+    -- exp = (cur_lv+1) ^ 4 - 1
+    ex.exp_min = self:GetLevelExp(ex.level - 1)
+    ex.exp_max = self:GetLevelExp(ex.level)
 
     -- 近战攻击力 = [力量*0.75 + 等级*0.5, 力量*1.1 + 等级*0.75]
     ex.atk_min = math.ceil(self:GetAttr('strength') * 0.75 + self:GetAttr('level') * 0.5)

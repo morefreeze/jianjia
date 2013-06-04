@@ -17,7 +17,7 @@
  <tileset firstgid="765" name="BuildingsTiles1" tilewidth="64" tileheight="64">
   <image source="BuildingsTiles1.png" width="384" height="512"/>
  </tileset>
- <layer name="块层 1" width="34" height="25">
+ <layer name="块层 1" width="34" height="25" visible="0">
   <data encoding="base64" compression="zlib">
    eJztwwENAAAMw6D6mn9ft3ABkLBqqqqqvh/EtsPn
   </data>
@@ -38,7 +38,7 @@
  </objectgroup>
  <layer name="_path" width="34" height="25" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzNllEKwCAMQ2X3P/I+9jmRtmmaKhYEmRrfltJuDBzv8w82rHOszqpR4fB0T3N431HRWpmioXAweYD2zDoeB2LM3MEEq3cTR4cvUb5Y+5RAHFmNmzgUlg6OrFZUG0754tXRSk1AtU7hiOYRn+JZNK/oV/cq79PJUdWwzlZ7PuqdTO1k7mZZs887/Ozi6Mov707Lv3mN5VSZrZqreIRyk+Vi1yKOHb5m/3OyfaI65vgAZSPDdw==
+   eJzNllEOwCAIQ83uf+R97HPGSKEtMyMxWaaWpzDYGLnd1ztY2+1jdVYNhSPSPc0R3aOjtTKh4XBU/FXPM6+PODLGyB/SzZiY+T9xoPuvxgXly25dxZT8YLUd6+RwWDo4qlqoNpyKi/LNRPec1TqHAz0jPidm6FnRV9c65+nkUDV2e9Wen/VOpnYyvlnW6vuOeHZxdOVX5DPqPdn/RaTjMu9qrhOjLDdZLnYOcXwR14om0yfUMdsDkqXRWw==
   </data>
  </layer>
 </map>

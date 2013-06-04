@@ -12,7 +12,10 @@ local function OnInit(self, scr)
     views.boss:SetTextColor(1,1,1):SetSize(1.079, 1.245):SetPosition(3, 12.5):SetSprite('Resources/Images/fight.jpg'):SetPhy(flux.b2_staticBody):PhyNewFixture()
 
     views.head = flux.TextView(scr, nil, 'wqy', '村长')
-    views.head:SetTextColor(1,1,1):SetSize(3,3):SetColor(0,0,0):SetPosition(-20, -8):SetPhy(flux.b2_staticBody):PhyNewFixture()
+    views.head:SetTextColor(1,1,1):SetSize(3,3):SetColor(0,0,0):SetPosition(-20, 0):SetPhy(flux.b2_staticBody):PhyNewFixture()
+
+    --views.red = flux.TextView(scr, nil, 'wqy', '测试')
+    --views.red:SetTextColor(1,1,1):SetSize(7,7):SetColor(0,0,0):SetPosition(5, 0):SetPhy(flux.b2_staticBody)
 
 end
 
@@ -26,16 +29,22 @@ local function OnLoad(self, scr)
         theWorld:DelayRun(wrap(function()
             scr:SetPlayer(SceneManager.player)
             SceneManager.player:Reset()
-
-            ShowText(101, {'选择阵营'})
+            ShowText(101, {
+                {'项目组', '亲爱的玩家们，当你们看到这段话的时候，证明你们成功的进入了游戏。这里是《蒹葭：冒险之旅》工程版本r1'},
+                {'项目组', '我们决定使用不断发布工程版本，然后向后迭代的方式来进行游戏开发。'},
+                {'项目组', '因此，你们会看到一些很挫的东西出现在游戏里面，不必介怀。'},
+                {'项目组', '因为若干个版本以后，他们会消失的。'},
+                '',
+                '空格键和Z键都是确认键，与人物对话时要走进按两者之一才行。',
+                '另外B键可以查看背包', '由于是工程版本，所以这段话会在每次进入这个场景时出现，请谅解。',
+                '请选择人物的行为倾向。'
+            })
         end), 2)
     else
         -- 非新玩家
         theWorld:DelayRun(wrap(function()
             scr:SetPlayer(SceneManager.player)
             SceneManager.player:Reset()
-            
-            ShowText(0, {'欢迎来到我们的世界！', '很快，你就要踏上自己的旅途。不过在此之前，我还有几件事情要说。', '方向键可以控制人物。', '空格键和Z键都是确认键，与人物对话时要走进按两者之一才行。', '另外B键可以查看背包', '由于是工程版本，所以这段话会在每次进入这个场景时出现，请谅解。'})
         end), 1)
     end
     

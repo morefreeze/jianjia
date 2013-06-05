@@ -1,17 +1,5 @@
---[[
-bar_name = {}
-ctr_view.bar_view_max = {}
-ctr_view.bar_view = {}
-ctr_view.bar_mark = {}
-
-ctr_view.attr_name = {}
-attr_num = {}
-
-]]--
-
 -- show character board of given character
 show_character = function(ctr)
-
     ScreenCharacter.new()
     theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
 end
@@ -136,7 +124,15 @@ local function CreateCharacterBoard(ctr)
             ctr_view.select_box:SetColor(0,1,1)
             ScreenCharacter.scr:AddView(ctr_view.select_box)
         end
+
+        -- show detail box
         collectgarbage('collect')
+    end
+
+    function ctr_view.restore()
+        for i = 1, #ctr_view.attr_num do
+            ctr_view.attr_num[i]:SetColor(0,0,1)
+        end
     end
 
     ctr_view.new(ctr)
@@ -153,6 +149,7 @@ if ScreenCharacter.scr then return end
         -- OnPush 事件
         ScreenCharacter.scr:lua_OnPush(wrap(function(this)
             ScreenCharacter.splash:FadeOut(0.9):AnimDo()
+            ScreenCharacter.ctr_view:restore();
         end))
         -- 按键响应
         ScreenCharacter.scr:lua_KeyInput(wrap(function(this, key, state)

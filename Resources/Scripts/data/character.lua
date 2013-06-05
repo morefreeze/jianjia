@@ -19,7 +19,7 @@ Character = Class(function(self, name, txt)
             endurance = 5,
             will = 5,
             -- attribute points
-            points = 10,
+            points = 5,
             spells = {},
             equip = {},
         }

@@ -25,6 +25,7 @@ attr_order = {
     "endurance",
     "will",
 }
+attr_detail_text = {_'与近战有关', _'与远程有关', _'与魔攻有关', _'与蓝量有关', _'与血量有关', _'与暴击有关',}
 bar_color = {
     {1,0,0}, -- red
     {0,0,1}, -- blue
@@ -116,13 +117,20 @@ local function CreateCharacterBoard(ctr)
         ctr_view.points_num:SetTextColor(0,0,1):SetPosition(attr_box.x+3, attr_box.y):SetHUD(true)
         ScreenCharacter.scr:AddView(ctr_view.points_name)
         ScreenCharacter.scr:AddView(ctr_view.points_num)
+        -- show select box
+        ctr_view.select_pos = 1
+        ctr_view.select_box = flux.View(ScreenCharacter.scr)
+        ctr_view.select_box:SetHUD(true):SetSize(1,1):SetPosition(attr_box.x + 4, attr_box.y - ctr_view.select_pos*2)
+        ctr_view.select_box:SetColor(0,1,1)
+        ScreenCharacter.scr:AddView(ctr_view.select_box)
+        -- show character attribute detail
+        ctr_view.attr_detail = flux.TextView(ScreenCharacter.scr, nil, "wqyL", 
+            attr_detail_text[ctr_view.select_pos]);
+        ctr_view.attr_detail:SetColor(0.49, 0.49, 0.49):SetPosition(-6, -2)
+        ctr_view.attr_detail:SetHUD(true)
+        ScreenCharacter.scr:AddView(ctr_view.attr_detail)
         if ctr.data['points'] > 0 then
             ctr_view.points = {}
-            ctr_view.select_pos = 1
-            ctr_view.select_box = flux.View(ScreenCharacter.scr)
-            ctr_view.select_box:SetHUD(true):SetSize(1,1):SetPosition(attr_box.x + 4, attr_box.y - ctr_view.select_pos*2)
-            ctr_view.select_box:SetColor(0,1,1)
-            ScreenCharacter.scr:AddView(ctr_view.select_box)
         end
 
         -- show detail box
@@ -148,7 +156,6 @@ if ScreenCharacter.scr then return end
         
         -- OnPush 事件
         ScreenCharacter.scr:lua_OnPush(wrap(function(this)
-            ScreenCharacter.splash:FadeOut(0.9):AnimDo()
             ScreenCharacter.ctr_view:restore();
         end))
         -- 按键响应
@@ -158,22 +165,21 @@ if ScreenCharacter.scr then return end
                 if key == flux.GLFW_KEY_ESC then
                     theWorld:PopScreen()
                 elseif key == flux.GLFW_KEY_UP then
-                    if ctr.data['points'] > 0 then
-                        local n = #attr_order
-                        ScreenCharacter.ctr_view.select_pos = 
-                            (ScreenCharacter.ctr_view.select_pos + n - 2) % n + 1
-                        ScreenCharacter.ctr_view.select_box:SetPosition(attr_box.x + 4, 
-                            attr_box.y - ScreenCharacter.ctr_view.select_pos * 2)
-                    end
-                end
+                    local n = #attr_order
+                    ScreenCharacter.ctr_view.select_pos = 
+                        (ScreenCharacter.ctr_view.select_pos + n - 2) % n + 1
+                    ScreenCharacter.ctr_view.select_box:SetPosition(attr_box.x + 4, 
+                        attr_box.y - ScreenCharacter.ctr_view.select_pos * 2)
+                    ScreenCharacter.ctr_view.attr_detail:SetText(
+                        attr_detail_text[ScreenCharacter.ctr_view.select_pos])
                 elseif key == flux.GLFW_KEY_DOWN then
-                    if ctr.data['points'] > 0 then
-                        local n = #attr_order
-                        ScreenCharacter.ctr_view.select_pos = 
-                            (ScreenCharacter.ctr_view.select_pos) % n + 1
-                        ScreenCharacter.ctr_view.select_box:SetPosition(attr_box.x + 4, 
-                            attr_box.y - ScreenCharacter.ctr_view.select_pos * 2)
-                    end
+                    local n = #attr_order
+                    ScreenCharacter.ctr_view.select_pos = 
+                        (ScreenCharacter.ctr_view.select_pos) % n + 1
+                    ScreenCharacter.ctr_view.select_box:SetPosition(attr_box.x + 4, 
+                        attr_box.y - ScreenCharacter.ctr_view.select_pos * 2)
+                    ScreenCharacter.ctr_view.attr_detail:SetText(
+                        attr_detail_text[ScreenCharacter.ctr_view.select_pos])
                 elseif key == flux.GLFW_KEY_SPACE then
                     if ctr.data['points'] > 0 then
                         local select_pos = ScreenCharacter.ctr_view.select_pos
@@ -185,16 +191,14 @@ if ScreenCharacter.scr then return end
                                 tostring(ctr.data[attr_order[select_pos]])):SetTextColor(1,0,0)
                         end
                     end
+                end
             end
-            end))
+        end))
         -- 初始化控件事件
         ScreenCharacter.scr:lua_Init(wrap(function(this)
 
             -- 生成控件
             --ScreenCharacter.bg = flux.View(this):SetHUD(true):SetSize(32, 24)
-
-            ScreenCharacter.splash = flux.View(this)
-            ScreenCharacter.splash:SetSize(32, 24):SetColor(0,0,0)
 
             -- 注册按键
             -- this:RegKey(_b'Z')
@@ -206,7 +210,6 @@ if ScreenCharacter.scr then return end
             this:RegKey(flux.GLFW_KEY_DOWN)
 
             --this:AddView(ScreenCharacter.bg)
-            -- this:AddView(ScreenCharacter.splash)
             ScreenCharacter.ctr_view = CreateCharacterBoard(data.ch[1])
 
             end))

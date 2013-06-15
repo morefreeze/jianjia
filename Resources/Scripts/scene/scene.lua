@@ -1,6 +1,7 @@
 
 
-Scene = Class(function(self, init_func, onload_func, keyinput_func, phybegin_func, phyend_func)
+Scene = Class(function(self, txt, init_func, onload_func, keyinput_func, phybegin_func, phyend_func)
+    self.txt = txt
     self.viewlist = {}
     self.isload = false
     self.init_func = init_func
@@ -59,7 +60,6 @@ function Scene:ResetEdge()
     theCamera:SetSize(pos.x, pos.y)
 
 end
-
 
 -- 将控件添加至窗体
 -- @param scr 指定的窗体

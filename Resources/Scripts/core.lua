@@ -26,6 +26,8 @@ require('screen_character')
 require('screen_item')
 require('screen_spell')
 require('screen_game')
+require('screen_msgbox')
+
 
 require('widget.widget')
 require('widget.widgetset')

@@ -63,7 +63,7 @@ ScreenFight = {
 
             -- 人物面板
             ScreenFight.namecardset = Widget.NameCardSet(this, {10, -7.7})
-            
+
             -- 敌人图像
             ScreenFight.enemypic = Widget.CustomWidgetsSet(this, Widget.EnemyImg, {{-7.1, 1.6}, {-3.8, 4.3}, {-0.5, 7}, {-10.4, -1.1}})
             ScreenFight.enemypic:SetSelectCallbak(function(self, pos)
@@ -72,10 +72,13 @@ ScreenFight = {
                     local from, to, dmg = ScreenFight.fight:DoAction(ScreenFight.obj, ScreenFight.action, pos)
                     ScreenFight.fightmenu:SetVisible(false)
                     print(from:GetAttr('name')..' 攻击 '..to[1]:GetAttr('name')..' 造成伤害 '..dmg[1])
+                    ScreenFight.enemypic.widgetlst[to[1].index]:ShowDmg(0-dmg[1])
                     for k,v in pairs(to) do
                         if v:GetAttr('hp') <= 0 then
                             print(v:GetAttr('name') .. ' 死亡')
                             ScreenFight.enemypic.widgetlst[v.index]:SetVisible(false)
+                            ScreenFight.enemypic.widgetlst[v.index]._viewlist[1]:SetAlpha(1)
+                            ScreenFight.enemypic.widgetlst[v.index]._viewlist[1]:FadeOut(0.5):AnimDo()
                         end
                     end
                     ScreenFight.namecardset:Refresh()
@@ -84,7 +87,7 @@ ScreenFight = {
                     end), 0.8)
                 end
                 ScreenFight.SelectAimEnm = nil
-                ScreenFight.Input = nil
+                --ScreenFight.Input = nil
             end)
 
             -- 战斗菜单
@@ -135,6 +138,12 @@ local function fightloop()
     while true do
         -- 回合开始
         local obj = ScreenFight.fight:GetNext()
+        for k,v in pairs(ScreenFight.enemypic.widgetlst) do
+            v:HideDmg()
+        end
+        for k,v in pairs(ScreenFight.namecardset._widgetlist) do
+            v:HideDmg()
+        end
         ScreenFight.obj = obj
         if obj.is_character then
             ScreenFight.fightmenu:SetVisible(true)
@@ -142,9 +151,12 @@ local function fightloop()
             theWorld:DelayRun(wrap(function()
                 local from, to, dmg = ScreenFight.fight:DoAction(obj)
                 print(from:GetAttr('name')..' 攻击 '..to[1]:GetAttr('name')..' 造成伤害 '..dmg[1])
+                ScreenFight.namecardset._widgetlist[to[1].index]:ShowDmg(0-dmg[1])
                 ScreenFight.namecardset:Refresh()
-                coroutine.resume(ScreenFight.co)
-            end), 0.8)
+                theWorld:DelayRun(wrap(function()
+                    coroutine.resume(ScreenFight.co)
+                end), 0.4)
+            end), 0.4)
         end
         ScreenFight.Input = obj.is_character
         coroutine.yield()

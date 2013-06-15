@@ -33,7 +33,7 @@ local function SetNext(this, curpos)
             end
         end
         --Ãû×Ö´æÔÚÔòÒþ²Ø
-        if ScreenText.name then
+        if ScreenText.name and ScreenText.name:GetAlpha() == 1 then
             ScreenText.name:AnimCancel()
             ScreenText.name:FadeOut(1, nil, -1):AnimDo()
         end
@@ -237,6 +237,7 @@ function ShowText(fromcode, textlist, ch_info, bgpic)
         --»Ö¸´
         ScreenText.scr:lua_OnPop(wrap(function(this)
             theWorld:PhyContinue()
+            ScreenGame.player:Reset()
             if ScreenText.portrait then
                 ScreenText.portrait:AnimCancel()
             end

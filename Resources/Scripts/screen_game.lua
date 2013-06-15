@@ -56,6 +56,13 @@ ScreenGame = {
                 theWorld:PushScreen(ScreenAlignmentChoose.scr, flux.SCREEN_APPEND)
             elseif from == 1001 then
                 data.player.alignment = ret
+                ShowText(0, {
+                    '阵营选择完成。',
+                    '空格键和Z键都是确认键，与人物对话时要走进按两者之一才行。',
+                    '另外B键可以查看背包',
+                    '当然背包里开始是没有物品的，不过打怪会掉落物品',
+                    '好了，在这个空旷的村子里走走看吧！',
+                })
             end
         end))
 
@@ -65,14 +72,16 @@ ScreenGame = {
 
             if state == flux.GLFW_PRESS then
                 if key == flux.GLFW_KEY_ESC then
-                    -- MsgBox(101, "是否想要回到标题页面？")
+                    MsgBox(0, "是否想要回到标题页面？", 1, function()
+                        ScreenStart.new()
+                        theWorld:PushScreen(ScreenStart.scr)
+                    end)
                 elseif key == _b'C' then
                     if data.ch[1] then
                         theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
                         show_character_content(data.ch[1])
                     end
                 elseif key == _b'B' then
-                    ScreenGame.player:Reset()
                     ShowItemPanel(false)
                 end
             end
@@ -83,7 +92,7 @@ ScreenGame = {
             -- 生成控件
             ScreenGame.player = flux.RMCharacter(this)
             ScreenGame.player:SetSpeed(6):SetSprite('Resources/Images/yf.png')
-            ScreenGame.player:SetSize(2.2, 2.64 )
+            ScreenGame.player:SetSize(2.2, 2.64)
             ScreenGame.player:SetPhy()
             ScreenGame.player:PhyNewFixture(flux.RM_Character) -- flux.RM_Character, false, 1.5, 0.4, flux.Vector2(0, -1.7)
 
@@ -91,8 +100,11 @@ ScreenGame = {
             ScreenGame.map:SetBlockSize(2)
             ScreenGame.map:SetPhy(flux.b2_staticBody)
 
+            ScreenGame.info = Widget.InfoCard(this, {11.2, 9.2})
+
             this:AddView(ScreenGame.player)
             this:AddView(ScreenGame.map, -1)
+            ScreenGame.info:AddToScreen(this)
 
             -- 注册按键
             this:RegKey(_b'Z')
@@ -119,4 +131,12 @@ ScreenGame = {
             SceneManager:PhyContactEnd(this, a, b)
         end))
     end,
+    
+    Refresh = function()
+        scr = ScreenGame.scr
+        scr:AddView(ScreenGame.map)
+        scr:AddView(ScreenGame.player)
+        ScreenGame.info:AddToScreen(scr)
+    end,
+
 }

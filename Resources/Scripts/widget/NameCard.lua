@@ -50,6 +50,9 @@ Widget.NameCard = Class(Widget.Widget, function(self, scr, pos, ch)
     list[10] = flux.View(self.scr)
     list[10]:SetHUD(true):SetColor(0, 0, 1):SetSize(3, 0.2):SetPosition(pos[1] - 0.4, pos[2] - 1.3):SetAlign(flux.ALIGN_LEFT) -- (11.1, -9)
 
+    list.dmgnum = flux.TextView(ScreenFight.scr, nil, 'wqy')
+    list.dmgnum:SetTextColor(1, 0, 0, 0):SetHUD(true):SetPosition(pos[1], pos[2]+2.7)
+
     if ch then
         self:SetCharacter(ch)
     end
@@ -60,7 +63,38 @@ function Widget.NameCard:SetCharacter(ch)
     self:Refresh()
 end
 
+function Widget.NameCard:HideDmg()
+    local list = self._viewlist
+    list.dmgnum:SetAlpha(0)
+end
+
+function Widget.NameCard:ShowDmg(dmg)
+    local list = self._viewlist
+    if dmg > 0 then
+        list.dmgnum:SetTextColor(0, 1, 0, 0)
+    else
+        list.dmgnum:SetTextColor(1, 0, 0, 0)
+    end
+    list.dmgnum:SetText(tostring(dmg))
+    list.dmgnum:SetAlpha(1)
+end
+
+-- …Ë÷√“˛≤ÿ
+function Widget.NameCard:SetVisible(visible)
+    self._visible = visible
+    local alpha = 0
+    if visible then
+        alpha = 1
+    end
+    for k,v in pairs(self._viewlist) do
+        if type(k) == 'number' then
+            v:SetAlpha(alpha)
+        end
+    end
+end
+
 function Widget.NameCard:_UpdatePos()
+    local list = self._viewlist
     list[1]:SetPosition(pos[1], pos[2])
     list[2]:SetPosition(pos[1], pos[2])
     list[3]:SetPosition(pos[1] - 1.7, pos[2] - 0.5)
@@ -71,11 +105,12 @@ function Widget.NameCard:_UpdatePos()
     list[8]:SetPosition(pos[1] - 0.3, pos[2] - 0.8)
     list[9]:SetPosition(pos[1] + 1.1, pos[2] - 1.3)
     list[10]:SetPosition(pos[1]- 0.4, pos[2] - 1.3)
+    list.dmgnum:SetPosition(pos[1], pos[2] + 2.7)
 end
 
 function Widget.NameCard:Refresh()
     local ch = self.ch
-    local list = self._viewlist    
+    local list = self._viewlist
     if not ch then return end
 
     list[4]:SetText(ch:GetAttr('name') .. ' lv.' .. ch:GetAttr('level'))

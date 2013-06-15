@@ -25,6 +25,7 @@ ScreenItem = {
 
         ScreenItem.scr:lua_OnPop(wrap(function(this)
             theWorld:PhyContinue()
+            ScreenGame.player:Reset()
         end))
 
         -- 初始化控件事件
@@ -38,7 +39,7 @@ ScreenItem = {
             ScreenItem.menu = Widget.GridMenu(this, 2, 7, {-5, 0}, {5,1})
             ScreenItem.menu:SetColor(0.49,0.49,0.49)
             ScreenItem.menu:SetSelColor(0.79, 0.79, 0.79)
-            
+
             local chlst
             if ScreenItem.in_fight then
                 chlst = data.chfight

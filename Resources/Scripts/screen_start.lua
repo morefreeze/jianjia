@@ -50,7 +50,7 @@ ScreenStart = {
         -- 初始化控件事件
         ScreenStart.scr:lua_Init(wrap(function(this)
             -- 标题
-            ScreenStart.Title = flux.TextView(this, nil, "wqyL", config.TITLE)
+            ScreenStart.Title = flux.TextView(this, nil, "wqyL", config.TITLE .. ' dev-r1')
             ScreenStart.Title:SetTextColor(0,0,1.0):SetPosition(0, 5):SetHUD(true)
 
             -- 菜单

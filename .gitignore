@@ -16,3 +16,5 @@
 *.lib
 *.pdb
 *.exp
+
+Thumbs.db

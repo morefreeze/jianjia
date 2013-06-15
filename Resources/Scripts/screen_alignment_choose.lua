@@ -10,7 +10,14 @@ ScreenAlignmentChoose = {
         
         -- OnPush 事件
         ScreenAlignmentChoose.scr:lua_OnPush(wrap(function(this)
+            theWorld:PhyPause()
             ScreenAlignmentChoose.splash:FadeOut(0.5):AnimDo()
+        end))
+        
+        --恢复
+        ScreenAlignmentChoose.scr:lua_OnPop(wrap(function(this)
+            theWorld:PhyContinue()
+            ScreenGame.player:Reset()
         end))
 
         -- 按键响应

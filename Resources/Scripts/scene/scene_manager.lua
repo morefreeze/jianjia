@@ -16,7 +16,7 @@ function SceneManager:Init()
     SceneManager.scr = ScreenGame.scr
     SceneManager.player = ScreenGame.player
     SceneManager.map = ScreenGame.map
-    
+
     SceneManager.bg = flux.View(self.scr)
     SceneManager.bg:SetHUD(true):SetSize(100, 100):SetColor(0, 0, 0)
 
@@ -60,6 +60,7 @@ function SceneManager:Load(scene, x, y)
         self.scene[scene]:AddToScreen(self.scr)
         self.now = self.scene[scene]
         self.now.name = scene
+        ScreenGame.info:Refresh()
     end))
 end
 
@@ -68,8 +69,9 @@ function SceneManager:Unload()
     self.player:Stop()
     self.scr:SetPlayer(nil)
     self.scr:RemoveAllView()
-    self.scr:AddView(self.map)
-    self.scr:AddView(self.player)
+    ScreenGame.Refresh()
+    --self.scr:AddView(self.map)
+    --self.scr:AddView(self.player)
     self.scr:AddView(self.bg, -1)
     self.scr:AddView(self.splash, 99)
     self.now = nil

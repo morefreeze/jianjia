@@ -6,8 +6,8 @@ data = {
 		game=0,
 	},
 	player = {
-		x = 0, -- x 坐标
-		y = 0, -- y 坐标
+		x = 20, -- x 坐标
+		y = -11.5, -- y 坐标
         scene = 'newbie_a3', -- 地点
 		alignment = 0, -- 阵营
 	},

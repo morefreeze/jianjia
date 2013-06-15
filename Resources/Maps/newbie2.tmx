@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="ForestTiles" tilewidth="64" tileheight="64">
   <image source="ForestTiles.png" width="384" height="5440"/>
  </tileset>
+ <tileset firstgid="511" name="BuildingsTiles2" tilewidth="64" tileheight="64">
+  <image source="BuildingsTiles2.png" width="1000" height="1415"/>
+ </tileset>
  <layer name="块层 1" width="34" height="25">
   <data encoding="base64" compression="zlib">
    eJztwwENAAAMw6D6mn9ft3ABkLBqqqqqvh/EtsPn
@@ -10,12 +13,12 @@
  </layer>
  <layer name="块层 2" width="34" height="25">
   <data encoding="base64" compression="zlib">
-   eJzFljtPVEEUx2cMuhAQo4ia+PgCRmNB5xYmfgKlUEwUE8XW9wNQWR9gpRRqoRZqoX4FtXEbGm1sNTG+l7VQSt/Ab9yZ3MPs3Ll3FxJP8sudO489/3vOmZktqrlWFO0CtEJbpL1Q9greBHgNS6ETlkXazdggDAmG4SP0wR44rJU6Akd1rV/664KV0O21m7ER7/2C1dEP++Ek/k/BaavD91dUC2NpOgbgEAzj/yycszqc5fHvz3kemTsKY4IrVsd3+GF04f8iXIJPOXw3amnfU7A6/sJ0xm/IPfIenR9MzHR8TWwPSDN1+FaMV8RYNz5W6eQpa3aS9yp8Ceh4Kdout1eZdw3GddK/VdAV+AYXu7WsWaeTp6zZmA5pTsd15t2Am3puvzQXb3kuuRi4+PtU4Kmq17EpRcct5t2GOxEdJt7t0KGSc8nFwHz3M94fq5rfsn2+UGEdxjYHdNxl3j24n6KjaHUshxVCh4vHpP3uNPLm5QHzHsKjSDxc3uV5JePhYvFE/ctH+Rt9jikdPyeMv9B4o/Xh4kEeSq4uf/L+C37DHzhG33E4EYiN2YsVr+8zvAvocPtR3lsyHi4HZVXTMWMm8NSwCM7AIAzBlsDv57VQXmQ8ylbHhNWxGJZAAVrhPIxACTbOQ0coL348XI0YHe3QYc416ITLMApj0JPiYwdjO6E3UtcmL6thjarfL19tPVKf20yNTmXsjzTbxbrd0JehYz1sUPX1IfOTtUdjtpe1+6AfWlQN30L14UzmZz46DrD2IAzo5G5vxmI6tjeoL+1uD90fofsESnnmNkvVw9wnfp9jIjKWRex3qzo5o/83ec2cx/5/pTxjeW0W1yUIkA==
+   eJzFlksvQ0EUx+cKWmlVqCLx+AJCLOx0IfEp2LBhiwVCiSL4Sti4m27Y2JKIeLW1oEvvx390Tu4xnXt79V7xT365j5n0/O85Z2aaFj+VZvcREAVN2v1f6BScGzgDzSABWrT7oFoGK4wMuAbjYALMWkLMgXmr/J7HToJ2kArBx7r2vKF8TIIpsID4i2BJ+dBjp0U4cvMxDWZABvFXwZryQfITX59z5DF3G+wwdpWPR/AkfSH+JtgCNz5i/1Zu3xNRPt7BR5Xf4OvlEj6vZM6scPzJPrwQzhrJs7EUYnRYzpX3bAHPRXBn8HHiM/YII2kYp9x1I0aP5Vx5z3r5qFWUb75HUQ4o/zp5cCAqfQwE8CHzHQNx4exRlAP53Yd43hPluLa6HguzD6nBGjyklY9W0MZ8UD4K6rvdCLMuVHe+X/F8UC72xXc97Ae8I0qW9z4hVW2c5NUflA/UIUt9+YznF/AK3nx/bXXReuRnGM8H1cAWZR+fcgKuFqjT6jIUwIepLjwftvKRUz4aQCOIgKjmoz+AD1Nd9HxQj0gfMRCX+xpIaD6GA/iQdekEXaJyvdyrfkR/jsoeLYW4Pkw+ekGfqOwPXp+w1mi9QpepP0i8PmH5oLO9Fnn5GPulP7ez3XR+mM4TkPUzt1aKGvI80d8ROY+xanj9bpHt0f+NX92Kyv9Kfsb86gurNOCQ
   </data>
  </layer>
  <layer name="块层 3" width="34" height="25">
   <data encoding="base64" compression="zlib">
-   eJztlDESQEAQBPdeQ0LCUxAgcAI8FgECvMYE+wHRXLFd1fF0sivCoXAiJawcKUCpsd/AltzRYd/DntwxYH+EE7nDMAzjDRF+VhzA30rQkAbQkaEhD6DDMP7IjNtb1JV4hxu2d/UgdpzYvtT7Y3/pATv1D3w=
+   eJzt1bmSAVEYxfGrHwBjCYcZVI3A3jKMJWQ2oWUQ2r0oAgR4EZOY8g9aSlUH93bpPlW/tM+pr6q7hTAXtyaEB148wQc/AghqJh9qIs90hRDGC14RQRQxiTsSdCWRQhoZZJGDLnFHga4iSnhHGRVUUZO4o05XAx/4xBe+8YOmxB0tutrooItf9NDHQOKOIV0jjDHBFDPMsbiz44Q/KStv54x/1SOMXG+i+jbXm1jpNnbNm0uIuEv1Cv4DbEhZYIfOhrwFdjhxYscsefdWhrXC93BD99awU7hjT/fBcHyw79IFeZ8k4g==
   </data>
  </layer>
  <objectgroup name="对象层 1" width="34" height="25">

@@ -203,7 +203,7 @@ local function InitRes(this, bgpic)
 end
 
 --窗体序列号,对话内容,立绘,背景图
-function ShowText(fromcode, textlist, ch_info, bgpic)
+function ShowText(fromcode, textlist, ch_info, bgpic, callback, allow_esc)
     -- fromcode=100
     -- textlist{{'名字','第一句话', 立绘编号, 立绘位置, 语音,{'分支1','分支2'...},callback}, '第二句话'}
     -- textlist{{'名字','第一句话', 立绘编号, 立绘位置, 语音,{'分支1','分支2'...},callback}, {{'分支1res'},{'分支2res'}...}}
@@ -264,6 +264,9 @@ function ShowText(fromcode, textlist, ch_info, bgpic)
                     if ScreenText.curpos > #ScreenText.textlist then
                         this:SetFromCode(ScreenText.fromcode)
                         theWorld:PopScreen()
+                        if ScreenText.callback then
+                            ScreenText.callback()
+                        end
                     else
                         SetNext(this, ScreenText.curpos)
                         --设置颜色
@@ -288,8 +291,13 @@ function ShowText(fromcode, textlist, ch_info, bgpic)
                         ScreenText.curpos = ScreenText.curpos - 1
                     end
                 elseif key == flux.GLFW_KEY_ESC then
-                    this:SetFromCode(ScreenText.fromcode)
-                    theWorld:PopScreen()
+                    if ScreenText.allow_esc then
+                        this:SetFromCode(ScreenText.fromcode)
+                        theWorld:PopScreen()
+                        if ScreenText.callback then
+                            ScreenText.callback()
+                        end
+                    end
                 end
 
                 --选择分支
@@ -342,6 +350,10 @@ function ShowText(fromcode, textlist, ch_info, bgpic)
     ScreenText.fromcode = fromcode
     ScreenText.textlist = textlist
     ScreenText.curpos = 2
+    -- 设定回调
+    ScreenText.callback = callback
+    -- 是否允许 ESC 退出
+    ScreenText.allow_esc = allow_esc
     theWorld:PushScreen(ScreenText.scr, flux.SCREEN_APPEND)
 end
 

@@ -66,7 +66,7 @@ ScreenFight = {
 
             -- 敌人图像
             ScreenFight.enemypic = Widget.CustomWidgetsSet(this, Widget.EnemyImg, {{-7.1, 1.6}, {-3.8, 4.3}, {-0.5, 7}, {-10.4, -1.1}})
-            ScreenFight.enemypic:SetSelectCallbak(function(self, pos)
+            ScreenFight.enemypic:SetSelectCallback(function(self, pos)
                 -- 选择目标
                 if pos then
                     local from, to, dmg = ScreenFight.fight:DoAction(ScreenFight.obj, ScreenFight.action, pos)
@@ -85,9 +85,9 @@ ScreenFight = {
                     theWorld:DelayRun(wrap(function()
                         coroutine.resume(ScreenFight.co)
                     end), 0.8)
+                    ScreenFight.Input = nil
                 end
-                ScreenFight.SelectAimEnm = nil
-                --ScreenFight.Input = nil
+                ScreenFight.SelectAimEnm = nil                
             end)
 
             -- 战斗菜单
@@ -95,7 +95,7 @@ ScreenFight = {
             ScreenFight.fightmenu:SetColor(0.49,0.49,0.49)
             ScreenFight.fightmenu:SetSelColor(0.79, 0.79, 0.79)
             ScreenFight.fightmenu:SetData({'攻击','技能','道具','防御','逃跑'})
-            ScreenFight.fightmenu:SetSelectCallbak(function(self, view, data, pos)
+            ScreenFight.fightmenu:SetSelectCallback(function(self, view, data, pos)
                 ScreenFight.action = pos
                 if pos == 1 then
                     -- 攻击

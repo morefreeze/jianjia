@@ -57,7 +57,7 @@ ScreenItem = {
                 end
             end)
 
-            ScreenItem.menu:SetMoveCallbak(function(self, view, data)
+            ScreenItem.menu:SetMoveCallback(function(self, view, data)
                 if data then
                     local id = data[1]
                     ScreenItem.txt:SetText(items[id][1] .. '\n \n' ..items[id].txt .. '\n \n当前数量：' .. data[2])
@@ -66,7 +66,7 @@ ScreenItem = {
                 end
             end)
 
-            ScreenItem.menu:SetSelectCallbak(function(self, view, data)
+            ScreenItem.menu:SetSelectCallback(function(self, view, data)
                 if data then
                     local id = data[1]
                     ScreenItem.item_id = id
@@ -77,7 +77,7 @@ ScreenItem = {
                 end
             end)
             
-            ScreenItem.namecardset:SetSelectCallbak(function(self, select)
+            ScreenItem.namecardset:SetSelectCallback(function(self, select)
                 if select then
                     local ret,txt = Items:Use(select, ScreenItem.item_id, ScreenItem.in_fight)
                     print('选择对 ' .. select:GetAttr('name') .. ' 使用 ' .. items[ScreenItem.item_id][1])

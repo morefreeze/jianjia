@@ -49,4 +49,5 @@ require('widget.GridMenu')
 require('widget.NameCard')
 require('widget.EnemyImg')
 require('widget.InfoCard')
+require('widget.SiderIcon')
 

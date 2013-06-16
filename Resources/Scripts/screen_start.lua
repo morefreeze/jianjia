@@ -2,9 +2,6 @@
 
 ScreenStart = {
 
-    cursel = 1,
-    MenuColor = {flux.Color(0,1,1), flux.Color(1,1,0),flux.Color(1,0,0), },
-
     new = function()
         if ScreenStart.scr then return end
 
@@ -15,75 +12,56 @@ ScreenStart = {
 
         -- 按键响应
         ScreenStart.scr:lua_KeyInput(wrap(function(this, key, state)
-            local function update(offset)
-                theSound:PlaySound(101)
-                ScreenStart.cursel = ScreenStart.cursel + offset
-                if ScreenStart.cursel == 0 then ScreenStart.cursel = #ScreenStart.Menu
-                elseif ScreenStart.cursel == (#ScreenStart.Menu+1) then ScreenStart.cursel = 1 end
-                local cursel = ScreenStart.cursel
-                ScreenStart.Star:AnimCancel()
-                ScreenStart.Star:MoveTo(0.3, -2, 1.5*(3-cursel)):RotateTo(0.3, 0, 90, nil, 0):RecolorTo(0.3, ScreenStart.MenuColor[cursel], nil, 0):AnimDo()
-            end
-
             if state == flux.GLFW_PRESS then
                 if key == flux.GLFW_KEY_ESC then
                     theWorld:EndGame()
-                elseif key == flux.GLFW_KEY_UP then
-                    update(-1)
-                elseif key == flux.GLFW_KEY_DOWN then
-                    update(1)
-                elseif key == flux.GLFW_KEY_SPACE or key == flux.GLFW_KEY_ENTER or key == _b'Z' then
-                    theSound:PlaySound(102)
-                    local cursel = ScreenStart.cursel
-                    if cursel == 1 then
-                        theWorld:PushScreen(ScreenGame.scr)
-                    elseif cursel == 2 then
-                        theWorld:PushScreen(ScreenAbout.scr)
-                    elseif cursel == 3 then
-                        theWorld:EndGame()
-                    end
+                else
+                    ScreenStart.menu:KeyInput(this, key, state)
                 end
             end
         end))
-    
+
+        -- OnPush 事件
+        ScreenStart.scr:lua_OnPush(wrap(function(this)
+            theSound:SetBGM(0)
+        end))
     
         -- 初始化控件事件
         ScreenStart.scr:lua_Init(wrap(function(this)
-            -- 标题
-            ScreenStart.Title = flux.TextView(this, nil, "wqyL", config.TITLE .. ' dev-r1')
-            ScreenStart.Title:SetTextColor(0,0,1.0):SetPosition(0, 5):SetHUD(true)
+            ScreenStart.txt = flux.TextView(this, nil, 'wqyS', '按←→切换菜单项，Space或Enter开始')
+            ScreenStart.txt:SetPosition(0, -5):SetHUD(true)
+            ScreenStart.txt:SetTextColor(0.69,0.69,0.69)
 
-            -- 菜单
-            ScreenStart.Menu = {
-                flux.TextView(this, nil, "wqyL", _'开始', 0.7),
-                flux.TextView(this, nil, "wqyL", _'关于', 0.7),
-                flux.TextView(this, nil, "wqyL", _'离开', 0.7),
-            }
+            ScreenStart.menu = Widget.SiderIcon(this)
+            ScreenStart.menu:SetData({'开始', 'Resources/Images/start/start.png'}, {'关于', 'Resources/Images/start/about.png'}, {'离开', 'Resources/Images/start/quit.png'})
+            ScreenStart.menu:SetSel(1)
+            ScreenStart.menu:SetMoveCallback(function()
+                theSound:PlaySound(101)
+            end)
 
-            for k,v in pairs(ScreenStart.Menu) do
-                v:SetHUD(true)
-                v:SetPosition(0, 1.5*(3-k))
-                this:AddView(v)
-            end
-
-            -- 选择器
-            local cursel = ScreenStart.cursel
-            ScreenStart.Star = flux.View(this)
-            ScreenStart.Star:SetHUD(true):SetSize(1,1):SetColor(ScreenStart.MenuColor[cursel]):SetPosition(-2, 1.5*(3-cursel))
+            ScreenStart.menu:SetSelectCallback(function(cursel)
+                theSound:PlaySound(102)
+                if cursel == 1 then
+                    theWorld:PushScreen(ScreenGame.scr)
+                elseif cursel == 2 then
+                    theWorld:PushScreen(ScreenAbout.scr)
+                elseif cursel == 3 then
+                    theWorld:EndGame()
+                end
+            end)
 
             -- 注册按键
             this:RegKey(flux.GLFW_KEY_ESC)
-            this:RegKey(flux.GLFW_KEY_UP);
-            this:RegKey(flux.GLFW_KEY_DOWN);
-            this:RegKey(flux.GLFW_KEY_SPACE);
-            this:RegKey(flux.GLFW_KEY_ENTER);
+            this:RegKey(flux.GLFW_KEY_LEFT)
+            this:RegKey(flux.GLFW_KEY_RIGHT)
+            this:RegKey(flux.GLFW_KEY_UP)
+            this:RegKey(flux.GLFW_KEY_DOWN)
+            this:RegKey(flux.GLFW_KEY_SPACE)
+            this:RegKey(flux.GLFW_KEY_ENTER)
             this:RegKey(_b'Z');
 
-            this:AddView(ScreenStart.Title)
-            this:AddView(ScreenStart.Menu[1])
-            this:AddView(ScreenStart.Menu[2])
-            this:AddView(ScreenStart.Menu[3])
-            this:AddView(ScreenStart.Star)
+            this:AddView(ScreenStart.txt)
+            ScreenStart.menu:AddToScreen(this)
         end))
 
     end,

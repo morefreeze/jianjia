@@ -51,7 +51,7 @@ ScreenGame = {
                 elseif retval == 1 then
                     print('Õ½¶·Ê§°Ü£¡')
                 end
-            elseif from == 101 then
+            elseif from == 100001 then
                 ScreenAlignmentChoose.new()
                 theWorld:PushScreen(ScreenAlignmentChoose.scr, flux.SCREEN_APPEND)
             elseif from == 1001 then
@@ -100,7 +100,8 @@ ScreenGame = {
             ScreenGame.map:SetBlockSize(2)
             ScreenGame.map:SetPhy(flux.b2_staticBody)
 
-            ScreenGame.info = Widget.InfoCard(this, {11.2, 9.2})
+            local size = theWorld:GetSize()
+            ScreenGame.info = Widget.InfoCard(this, {size.x/2 - 0.34, size.y/2 - 0.8})
 
             this:AddView(ScreenGame.player)
             this:AddView(ScreenGame.map, -1)

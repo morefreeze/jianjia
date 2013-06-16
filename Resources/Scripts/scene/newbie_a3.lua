@@ -2,6 +2,8 @@
 -- 新手村
 
 local function OnInit(self, scr)
+    
+    Sound:Load(Sound.BGM.Newbie1)
 
     local views = self.viewlist
 
@@ -79,7 +81,7 @@ local function OnInit(self, scr)
     
     for k,v in pairs(views) do
         if string.find(k,'^b%d+$') then
-            v:SetAlpha(0)
+           v:SetAlpha(0)
         end
     end
 
@@ -89,8 +91,11 @@ local function OnInit(self, scr)
     views.head = flux.TextView(scr, nil, 'wqy', '村长')
     views.head:SetTextColor(1,1,1):SetSize(2,2):SetColor(0,0,0):SetPosition(5, -13):SetPhy(flux.b2_staticBody):PhyNewFixture()
 
-    views.pcmiao = flux.TextView(scr, nil, 'wqy', 'PC喵')
-    views.pcmiao:SetTextColor(1,1,1):SetSize(2,2):SetColor(0,0,0):SetPosition(-13, -9):SetPhy(flux.b2_staticBody):PhyNewFixture()
+    views.pcmiao = flux.View(scr)
+    views.pcmiao:SetSize(2.2,2.772):SetPosition(-13, -9):SetPhy(flux.b2_staticBody):PhyNewFixture()
+    --views.pcmiao:SetSprite("Resources/Images/ch/QPC01.png")
+    views.pcmiao:SetSpriteFrame("Resources/Images/ch/QPC01.png", 1)
+    views.pcmiao:SetSpriteFrame("Resources/Images/ch/QPC02.png", 2)
 
     views.uu = flux.TextView(scr, nil, 'wqy', 'UU')
     views.uu:SetTextColor(1,1,1):SetSize(2,2):SetColor(0,0,0):SetPosition(25.2, -13):SetPhy(flux.b2_staticBody):PhyNewFixture()
@@ -103,31 +108,17 @@ end
 local function OnLoad(self, scr)
     SceneManager.map:SetColor(0.486, 0.80, 0.486)
     SceneManager.map:Load('Resources/Maps/newbie3.tmx'):SetAlpha(1)
+    theSound:SetBGM(Sound.BGM.Newbie1.id)
     self:ResetEdge()
+    
+    local views = self.viewlist
+    views.pcmiao:PlayFrame(1, 1, 2):Loop()
 
-    if data.player.alignment == 0 then
-        -- 新玩家
-        theWorld:DelayRun(wrap(function()
-            scr:SetPlayer(SceneManager.player)
-            SceneManager.player:Reset()
-            ShowText(101, {
-                {'项目组', '亲爱的玩家们，当你们看到这段话的时候，证明你们成功的进入了游戏。这里是《蒹葭：冒险之旅》工程版本r1'},
-                {'项目组', '我们决定使用不断发布工程版本，然后向后迭代的方式来进行游戏开发。'},
-                {'项目组', '因此，你们会看到一些很挫的东西出现在游戏里面，不必介怀。'},
-                {'项目组', '若干个版本以后，他们自会消失。'},
-                {'项目组', '做游戏不是一件容易的事情，需要长久的时间和大量的精力，以及必不可少的齐心协力。'},
-                {'项目组', '这会是一段漫长的时间。我们会聆听你们的意见和建议，也请谅解等待。我们会竭尽所能。'},
-                '游戏有存档功能，但目前只会在游戏关闭的时候自动保存。',
-                '首先，请选择人物的行为倾向。'
-            })
-        end), 2)
-    else
-        -- 非新玩家
-        theWorld:DelayRun(wrap(function()
-            scr:SetPlayer(SceneManager.player)
-            SceneManager.player:Reset()
-        end), 1)
-    end
+    -- 非新玩家
+    theWorld:DelayRun(wrap(function()
+        scr:SetPlayer(SceneManager.player)
+        SceneManager.player:Reset()
+    end), 1)
     
 end
 

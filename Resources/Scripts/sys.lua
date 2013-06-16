@@ -1,6 +1,7 @@
 
 
 data = {
+    new = true,
 	num = {
 		boot=0,
 		game=0,
@@ -8,7 +9,7 @@ data = {
 	player = {
 		x = 20, -- x 坐标
 		y = -11.5, -- y 坐标
-        scene = 'newbie_a3', -- 地点
+        scene = 'newbie_start', -- 地点
 		alignment = 0, -- 阵营
 	},
 	ch = {},
@@ -19,6 +20,7 @@ math.randomseed(os.time())
 
 require('sys.fight')
 
+require('data.sound')
 require('data.enemy')
 require('data.spell')
 require('data.items')

@@ -7,7 +7,7 @@ package.path = package.path .. ';./Resources/Scripts/lib/?.lua'
 config = {
     SCREEN_WIDTH = 1024,
     SCREEN_HEIGHT = 768,
-    TITLE = '›Û›Á£∫√∞œ’÷Æ¬√',
+    TITLE = '›Û›Á£∫√∞œ’÷Æ¬√ dev-r2',
     VER = 'v0.1',
 }
 
@@ -28,7 +28,6 @@ require('screen_spell')
 require('screen_game')
 require('screen_msgbox')
 
-
 require('widget.widget')
 require('widget.widgetset')
 require('scene.scene_manager')
@@ -37,7 +36,6 @@ function theWorld_GameInit()
     theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqyL', 40)
     theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqy',  25)
     theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqyS', 15)
-	-- theSound:LoadMusic(1, "Resources/Sounds/bgm1.mid")
 	ScreenStart.new()
 	ScreenFight.new()
 	ScreenAbout.new()

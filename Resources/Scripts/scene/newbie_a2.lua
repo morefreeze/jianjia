@@ -3,6 +3,8 @@
 
 local function OnInit(self, scr)
 
+    Sound:Load(Sound.BGM.Newbie1)
+
     local views = self.viewlist
 
     -- ´´½¨±ß½ç
@@ -94,6 +96,7 @@ end
 
 local function OnLoad(self, scr)
     SceneManager.map:Load('Resources/Maps/newbie2.tmx'):SetAlpha(1)
+    theSound:SetBGM(Sound.BGM.Newbie1.id)
     self:ResetEdge()
 
     theWorld:DelayRun(wrap(function()

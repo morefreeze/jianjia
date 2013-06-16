@@ -130,13 +130,13 @@ end
 
 -- 设置回调函数
 -- 在每次被选中项改变的时候被调用
-function Widget.GridMenu:SetMoveCallbak(callback)
+function Widget.GridMenu:SetMoveCallback(callback)
     self.move_callback = callback
 end
 
 -- 设置选定回调函数
 -- 当对着这个项按 Z 或 Space 时会调用这个回调
-function Widget.GridMenu:SetSelectCallbak(callback)
+function Widget.GridMenu:SetSelectCallback(callback)
     self.sel_callback = callback
 end
 

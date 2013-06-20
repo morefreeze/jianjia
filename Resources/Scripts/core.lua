@@ -7,7 +7,7 @@ package.path = package.path .. ';./Resources/Scripts/lib/?.lua'
 config = {
     SCREEN_WIDTH = 1024,
     SCREEN_HEIGHT = 768,
-    TITLE = '›Û›Á£∫√∞œ’÷Æ¬√ dev-r2',
+    TITLE = '›Û›Á£∫√∞œ’÷Æ¬√ dev-r3a1',
     VER = 'v0.1',
 }
 

@@ -222,7 +222,6 @@ function ShowText(fromcode, textlist, ch_info, bgpic, callback, allow_esc)
             this:RegKey(flux.GLFW_KEY_UP)
             this:RegKey(flux.GLFW_KEY_DOWN)
 
-
             InitRes(this, bgpic)
         end))
 

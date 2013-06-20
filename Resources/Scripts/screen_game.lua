@@ -91,7 +91,7 @@ ScreenGame = {
         ScreenGame.scr:lua_Init(wrap(function(this)
             -- Éú³É¿Ø¼þ
             ScreenGame.player = flux.RMCharacter(this)
-            ScreenGame.player:SetSpeed(6):SetSprite('Resources/Images/yf.png')
+            ScreenGame.player:SetSpeed(6):SetSprite('Resources/Images/ch/yf.png')
             ScreenGame.player:SetSize(2.2, 2.64)
             ScreenGame.player:SetPhy()
             ScreenGame.player:PhyNewFixture(flux.RM_Character) -- flux.RM_Character, false, 1.5, 0.4, flux.Vector2(0, -1.7)

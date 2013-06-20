@@ -1,11 +1,11 @@
 
--- SiderIcon 滑动图标，见开始页面
+-- SliderIcon 滑动图标，见开始页面
 -- @param scr 你懂的
 -- @param pos 控件中心位置，默认为 (0,0)
-Widget.SiderIcon = Class(Widget.Widget, function(self, scr, pos)
+Widget.SliderIcon = Class(Widget.Widget, function(self, scr, pos)
 
     -- 最后一个参数本身并无任何意义，只是让父类有个渠道知道是哪一个子类在调用父类构造函数。
-    Widget.Widget._ctor(self, scr, pos, "WIDGET.SIDERICON")
+    Widget.Widget._ctor(self, scr, pos, "WIDGET.SLIDERICON")
 
     local list = self._viewlist
     list.pic1 = flux.View(scr)
@@ -17,7 +17,7 @@ Widget.SiderIcon = Class(Widget.Widget, function(self, scr, pos)
     self:_UpdatePos()
 end)
 
-function Widget.SiderIcon:SetSel(sel)
+function Widget.SliderIcon:SetSel(sel)
     local list = self._viewlist
     self.sel = 1
     if self.data then
@@ -32,35 +32,35 @@ function Widget.SiderIcon:SetSel(sel)
     end
 end
 
-function Widget.SiderIcon:SetData(...)
+function Widget.SliderIcon:SetData(...)
     self.data = {...}
 end
 
 -- 设置选定回调函数
 -- 当对着这个项按 Z 或 Space 时会调用这个回调
-function Widget.SiderIcon:SetSelectCallback(callback)
+function Widget.SliderIcon:SetSelectCallback(callback)
     self.sel_callback = callback
 end
 
 -- 设置回调函数
 -- 在每次被选中项改变的时候被调用
-function Widget.SiderIcon:SetMoveCallback(callback)
+function Widget.SliderIcon:SetMoveCallback(callback)
     self.move_callback = callback
 end
 
-function Widget.SiderIcon:_UpdatePos()
+function Widget.SliderIcon:_UpdatePos()
     local list = self._viewlist
     list.pic1:SetPosition(self.pos[1], self.pos[2]+2)
     list.txt:SetPosition(self.pos[1], self.pos[2]-1)
 end
 
 -- 更新
-function Widget.SiderIcon:Refresh()
+function Widget.SliderIcon:Refresh()
     local list = self._viewlist
 end
 
 -- 按键响应
-function Widget.SiderIcon:KeyInput(scr, key, state)
+function Widget.SliderIcon:KeyInput(scr, key, state)
     local list = self._viewlist
     local function _update(step)
         if self.lock then

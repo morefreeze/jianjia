@@ -97,6 +97,10 @@ local function OnInit(self, scr)
     views.pcmiao:SetSpriteFrame("Resources/Images/ch/QPC01.png", 1)
     views.pcmiao:SetSpriteFrame("Resources/Images/ch/QPC02.png", 2)
 
+    views.bbz = flux.View(scr)
+    views.bbz:SetSize(2.18,2.29):SetPosition(-10, -15):SetPhy(flux.b2_staticBody):PhyNewFixture()
+    views.bbz:SetSprite("Resources/Images/ch/bbz.png")
+    
     views.uu = flux.TextView(scr, nil, 'wqy', 'UU')
     views.uu:SetTextColor(1,1,1):SetSize(2,2):SetColor(0,0,0):SetPosition(25.2, -13):SetPhy(flux.b2_staticBody):PhyNewFixture()
 

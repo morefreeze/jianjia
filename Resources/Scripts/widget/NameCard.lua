@@ -20,7 +20,7 @@ Widget.NameCard = Class(Widget.Widget, function(self, scr, pos, ch)
 
     -- head
     list[3] = flux.View(self.scr)
-    list[3]:SetHUD(true):SetSize(2, 2.5):SetColor(0, 0, 0):SetPosition(pos[1] - 1.7, pos[2] - 0.5) -- (8.3, -8.2)
+    list[3]:SetHUD(true):SetSize(2, 2.5):SetColor(0,0,0):SetPosition(pos[1] - 1.7, pos[2] - 0.5) -- (8.3, -8.2) SetSprite('Resources/Images/yf_avatar.png')
 
     -- name
     list[4] = flux.TextView(self.scr, nil, "wqy", 'name', 0.7)

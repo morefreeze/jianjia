@@ -88,7 +88,8 @@ function FightSession:GetNext()
     end
     
     if #self.atk_list == 0 then
-        return
+        self:RefreshRound()
+        return self:GetNext()
     end
 
     local ret = self.atk_list[1]
@@ -190,6 +191,7 @@ function FightSession:DoAction(obj, way, ...)
         -- 返回数据
         return obj, {data.chfight[i]}, {dmg}
     end
+
 end
 
 -- 计算上次战斗收益，同时进行死亡惩罚

@@ -7,9 +7,17 @@ package.path = package.path .. ';./Resources/Scripts/lib/?.lua'
 config = {
     SCREEN_WIDTH = 1024,
     SCREEN_HEIGHT = 768,
-    TITLE = '›Û›Á£∫√∞œ’÷Æ¬√ dev-r3a1',
-    VER = 'v0.1',
+    TITLE = '›Û›Á£∫√∞œ’÷Æ¬√ dev-r3',
+    VER = 'v0.01',
 }
+
+function unpack(t)
+    if type(t) == 'table' then
+        return table.unpack(t)
+    else
+        return t
+    end
+end
 
 json = require ("dkjson")
 require('class')
@@ -27,6 +35,7 @@ require('screen_item')
 require('screen_spell')
 require('screen_game')
 require('screen_msgbox')
+require('screen_tip')
 
 require('widget.widget')
 require('widget.widgetset')

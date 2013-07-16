@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="34" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="ForestTiles" tilewidth="64" tileheight="64">
+  <image source="ForestTiles.png" width="384" height="5440"/>
+  <terraintypes>
+   <terrain name="新地形" tile="-1"/>
+  </terraintypes>
+  <tile id="478" terrain=",,,0"/>
+ </tileset>
+ <tileset firstgid="511" name="DungeonTiles" tilewidth="64" tileheight="64">
+  <image source="DungeonTiles.png" width="384" height="2688"/>
+ </tileset>
+ <tileset firstgid="763" name="PathTiles" tilewidth="64" tileheight="64">
+  <image source="PathTiles.png" width="128" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="765" name="BuildingsTiles1" tilewidth="64" tileheight="64">
+  <image source="BuildingsTiles1.png" width="384" height="512"/>
+ </tileset>
+ <layer name="块层 1" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJy1lEsOwyAMRK3eg2WUqFegh+N8VW7UTRsJq5HjH9hZzAaB/RgPNABoCapd5aQ6oAwGVCHycN/NsSbXzuC4axZcHcrg7TXDo+VMykW2FxrDk/HDOttgjMl6bxaDVItbn+Wg79R6q1btkbOoz+PKsHVpPb0eSTUog8Tx/mlXzkrrXg4UMnAcpTPsRn8uq558UB9QRyZXwvE6sTSmR4SD+oDa4JrXlXB4ffb4JzEc+xbGjwr/2Uh39/5vGsN5H3JgXnBe2r81Ko6Bq7uAzKnNIZOh9llw+yLi+mNt7V6ZHFIWPPPN4NA8sHyQamTmIFIrypE119mz0WxF75TFEOX4AshqXDo=
+  </data>
+ </layer>
+ <layer name="块层 2" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlU0KwjAQhVvBH2irUPRoulAX6kK9nisvI+jaC9S/qi84gTQkMSnBLOwHr5OGpvM6k5Io0nOQ7s8kFbv4EzO6HxjeK1JCT8W8KZeJPfnIoQQaGZ4toItizPOLHKGToxexFtwX4wrdoDv0iKo1EMd1vl/ng9diDB8T8vJiF4xjqCX4k2vhi5ziFLlm0JxythE7UBfqCT50e4Mh17AOC+RaQivKmSCmUAb1Y/Najq6GNiQU11i3gbaW6wvFnK6GNtj+qzKlYq5ODVX46K8PXPqr6osvXPqr6osrQ828r/66kH1/5Cc0PqqwPZKGNtHQ8Afw8zA0/DwMDT8PQ8PPwzfZMzP6
+  </data>
+ </layer>
+ <layer name="块层 3" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJytlbtOA0EMRWeRIEF5CQglfRoQfVIg+AV+BigIEo8C+BhKKioaqCiRAPEMogBKngHsxKMYy56dTXKlm93szu6c8XUmzul6oOMl+NoY04/a4B92tHRFx3PwBXG06NoKeC3wbI6dHyT9cXrdK9dw/lXwJnhD3KsNNl1Hb5Hj1mk+9I4yv2RZzliLdsQYnGMLvM0YvHAd73TuM6kE3vUB/gR/gb/F8zEcu+A98L64x3utFMHxix9QqwQ8kqT3qsbi5dfA19JkHNPgJSOXUbg+Bs6B88YYWTNL8neHDJjJZHgpHRVg7iK4BC4n/9flJWvGpeW4kHTnzxNDwXVrkVUym1DN+NgGHWUNQn0Rq7rTa1an+01yg+wZZgTHouCPzZpzyO91mttnckL2DJhDlVwET4DHxXusrLHvb+D7LfhOrJmfcw6eCa9Dhd43y56X2VhZI0MLfAjnT4wDbe0xyDIvGKyelBxa1ljTR2I4YxyeJbTHaAxa9jG9WiOOIzieCg6UVUOrDpKb94i1X8+5XibIwHPx0moYykJyl1yvb6z9mvfFscEh15DWD5Kbc2jCPJ5h3Ivwq7FXyT2yqjBovZHGkUUxvwmUti8MgyOmBlxaT085ez+LkZ8/rQZcWk+jBqlJ2cXVIEZZOGSP9ft/HeKIyUb22DD6W3LE1ET22B9zS5GV
+  </data>
+ </layer>
+ <objectgroup name="对象层 1" width="34" height="25"/>
+</map>

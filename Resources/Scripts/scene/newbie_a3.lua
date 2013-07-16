@@ -1,9 +1,11 @@
 
 -- 新手村
 
+local story
+
 local function OnInit(self, scr)
     
-    Sound:Load(Sound.BGM.Newbie1)
+    Sound:Load(Sound.BGM.Newbie)
 
     local views = self.viewlist
 
@@ -84,65 +86,50 @@ local function OnInit(self, scr)
            v:SetAlpha(0)
         end
     end
-
-    views.boss = flux.TextView(scr, nil, 'wqy', '')
-    views.boss:SetTextColor(1,1,1):SetSize(1.079, 1.245):SetPosition(3, 12.5):SetSprite('Resources/Images/fight.jpg'):SetPhy(flux.b2_staticBody):PhyNewFixture()
-
-    views.head = flux.TextView(scr, nil, 'wqy', '村长')
-    views.head:SetTextColor(1,1,1):SetSize(2,2):SetColor(0,0,0):SetPosition(5, -13):SetPhy(flux.b2_staticBody):PhyNewFixture()
-
-    views.pcmiao = flux.View(scr)
-    views.pcmiao:SetSize(2.2,2.772):SetPosition(-13, -9):SetPhy(flux.b2_staticBody):PhyNewFixture()
-    --views.pcmiao:SetSprite("Resources/Images/ch/QPC01.png")
-    views.pcmiao:SetSpriteFrame("Resources/Images/ch/QPC01.png", 1)
-    views.pcmiao:SetSpriteFrame("Resources/Images/ch/QPC02.png", 2)
-
-    views.bbz = flux.View(scr)
-    views.bbz:SetSize(2.18,2.29):SetPosition(-10, -15):SetPhy(flux.b2_staticBody):PhyNewFixture()
-    views.bbz:SetSprite("Resources/Images/ch/bbz.png")
     
-    views.uu = flux.TextView(scr, nil, 'wqy', 'UU')
-    views.uu:SetTextColor(1,1,1):SetSize(2,2):SetColor(0,0,0):SetPosition(25.2, -13):SetPhy(flux.b2_staticBody):PhyNewFixture()
+    self.scr = scr
+    self:LoadNPC()
 
-    --views.red = flux.TextView(scr, nil, 'wqy', '测试')
-    --views.red:SetTextColor(1,1,1):SetSize(7,7):SetColor(0,0,0):SetPosition(5, 0):SetPhy(flux.b2_staticBody)
+    --views.pcmiao_hi = flux.View(scr)
+    --views.pcmiao_hi:SetSize(2,8):SetPosition(-13, -15):SetColor(1,0,0,0):SetPhy(flux.b2_staticBody):PhyNewFixture(101, true)
 
+    --views.bbz = flux.View(scr)
+    --views.bbz:SetSize(2.18,2.29):SetPosition(-10, -15):SetPhy(flux.b2_staticBody):PhyNewFixture()
+    --views.bbz:SetSprite("Resources/Images/ch/bbz.png")
+
+    if not data.story[self.mapname] then
+        data.story[self.mapname] = {}
+    end
+    story = data.story[self.mapname]
 end
 
 local function OnLoad(self, scr)
     SceneManager.map:SetColor(0.486, 0.80, 0.486)
     SceneManager.map:Load('Resources/Maps/newbie3.tmx'):SetAlpha(1)
-    theSound:SetBGM(Sound.BGM.Newbie1.id)
+    theSound:SetBGM(Sound.BGM.Newbie.id)
+    --theSound:SetBGM(0)
     self:ResetEdge()
     
     local views = self.viewlist
-    views.pcmiao:PlayFrame(1, 1, 2):Loop()
+    views.pcmiao:PlayFrame(1, 0, 1):Loop()
+    views.uu:PlayFrame(0.8, 0, 1):PlayFrame(0.8, 0, 1):PlayFrame(0.8, 2, 1):Loop()
 
-    -- 非新玩家
     theWorld:DelayRun(wrap(function()
         scr:SetPlayer(SceneManager.player)
         SceneManager.player:Reset()
+        if not story['1'] then
+            ShowText(0, {
+                {data.ch[1]:GetAttr('name'), '看样子，今天是个好天气。'},
+                {data.ch[1]:GetAttr('name'), '东西收拾得差不多了，身体也养好了。离开这里大概就是这一两天的事情了。'},
+                {data.ch[1]:GetAttr('name'), '既然打算走了，我应该去和村长打个招呼。'},
+            })
+            story['1'] = true
+        end
     end), 1)
     
 end
 
 local function KeyInput(self, scr, key, state)
-
-    local views = self.viewlist
-    
-    if state == flux.GLFW_PRESS then
-        if key == _b'Z' or key == flux.GLFW_KEY_SPACE then
-            if SceneManager.player:CheckFacing(views.boss, 0.5) then
-                ShowText(0, {{"紧握小黄书的男人","旅行者，有什么想说的么？",2,1,102,{'我们缺少原画！！','原画大神求带！！！'},callback},{"神秘的人",{"分支1的结果","分支2的结果"},1,2,101,{'分支3','分支4'}},{"Yu","b",2,1,101,{"ffdsaf1","fdafdsa2"}},{"神秘的人","c",1,2,102},{"Yu","d",2,1,102},"一二三四五六七八"},{"Resources/Images/SCA07.png","Resources/Images/hero.png"})
-            elseif SceneManager.player:CheckFacing(views.pcmiao) then
-                RandomShowText({0, {{'PC喵', '喵！来抱抱！'}}},  {0, {{'PC喵', '打滚……有点困……'}}}, {0, {{'PC喵', '今天天气好好的呀，来发个呆吧嗯！'}}})
-            elseif SceneManager.player:CheckFacing(views.uu) then
-                RandomShowText({0, {{'码头钓鱼者 UU', '哎，这里鱼都被我钓光了，怎么我的翅膀就不上钩了呢？'}}},  {0, {{'码头钓鱼者 UU', '最近村里的猪肉好吃么？都是我从河里钓上来的耶！'}}}, {0, {{'码头钓鱼者 UU', '哼，经过我的努力，我终于在河里钓上猪了，只要努力我坚信水坑也可以钓回我的翅膀！！'}}}, {0, {{'码头钓鱼者 UU', '你知道为什么那么多人为one piece疯狂么？我前几年就钓到了，嘘~~~小声点。'}}}, {0, {{'码头钓鱼者 UU', '你见过传说中的one piece么？如果你能帮我找回双翼，我会把它送给你的。'}}})
-            elseif SceneManager.player:CheckFacing(views.head) then
-                RandomShowText({0, {{'村长', '早睡早起，方能养生。'}}},  {0, {{'村长', '小子，往那边站一点，没看见我在晒太阳吗。'}}}, {0, {{'村长', '你知道“骷髅心脏”戏剧团下次来的日子吗，上次的‘额外演出’真是让人回味无穷……'}}})
-            end
-        end
-    end
 
 end
 
@@ -158,10 +145,30 @@ local function PhyContactBegin(self, scr, a, b)
     -- 右边界
     elseif a.index == 3 and b.index == 10004 then
     end
+    
+    -- PC的触发对话
+    if a.index == 3 and b.index == 101 then
+        if not story._pc then
+            ShowText(0, {
+                {npc.pc.name, '上午好呀，异乡人。'},
+                {data.ch[1]:GetAttr('name'), '咦？上午好，' .. npc.pc.name .. '。'},
+                '（这个猫耳小姑娘是我在村子里比较熟悉的人之一，之前受伤的时候时常来照顾我。）',
+                '（一来二去，我们也就认识了。）',
+                '（总而言之，是个心地善良的好人。）',
+                {npc.pc.name, '嗯，你要去哪里呀？'},
+                {data.ch[1]:GetAttr('name'), '我计划再过一段时间就离开村子，先去和村长说一声。'},
+                {npc.pc.name, '这样呀……'},
+                {npc.pc.name, '村长这个时候应该就在桥边晒太阳，你过去就可以看到他了。'},
+                {data.ch[1]:GetAttr('name'), '嗯，谢谢你。'},
+                '（我移开了视线，' .. npc.pc.name .. '则歪了歪脑袋，露出有点困惑的神情。不管怎么说，先去找到村长吧。）',
+            })
+            story._pc = true        
+        end
+    end
 end
 
 local function PhyContactEnd(self, scr, a, b)
-    
+   ;
 end
 
-SceneManager.scene.newbie_a3 = Scene({'影帆镇 - 3', '一座平凡的小镇'}, OnInit, OnLoad, KeyInput, PhyContactBegin, PhyContactEnd)
+Scene('newbie_a3', '影帆镇', OnInit, OnLoad, KeyInput, PhyContactBegin, PhyContactEnd)

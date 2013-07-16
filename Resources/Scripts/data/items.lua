@@ -14,6 +14,7 @@ items = {
     {_'初级生命药剂',     id=4, use={change={hp=150}}, txt='回复 150 点HP。'},  -- delay = 0, round = 3, each_round = false, lost = true
     {_'初级魔法药剂',     id=5, use={change={mp=150}}, txt='回复 150 点MP。'},
     {_'初级缓慢回复药剂',  id=6, use={change={hp=70}, round=3, each_round=true, fight=true, is_buff=true}, txt='每回合回复 70 点HP，持续3回合。重复使用效果不叠加，但时间会延长。只能在战斗中使用。'},
+    {_'长老之杖',        id=7, txt='“长老你怎么了长老！长老你醒醒啊！”'},
 }
 
 -- 凡是可以重复叠加的物品都会进入buff列表
@@ -163,6 +164,17 @@ function Items:GetItem(item, num)
         end
     end
 end
+
+function Items:HasItem(item)
+    data.items = data.items or {}
+    local item = self:_getitem(item)
+    for k,v in pairs(data.items) do
+        if v[1] == item.id then
+            return true
+        end
+    end
+end
+
 
 -- 玩家失去物品
 -- @param item 物品的id或者描述物品的表

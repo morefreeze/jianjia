@@ -12,43 +12,51 @@ Widget.NameCard = Class(Widget.Widget, function(self, scr, pos, ch)
 
     -- board_bg
     list[1] = flux.View(self.scr)
-    list[1]:SetHUD(true):SetSize(6, 4):SetColor(0, 0, 0):SetPosition(pos[1], pos[2]) --(10, -7.7)
+    list[1]:SetHUD(true):SetSize(6, 3.671875):SetSprite('Resources/Images/UI/NameCard/box.png'):SetPosition(pos[1], pos[2]) --(10, -7.7)
 
     -- board
     list[2] = flux.View(self.scr)
-    list[2]:SetHUD(true):SetSize(5.8, 3.8):SetColor(1, 1, 1):SetPosition(pos[1], pos[2]) --(10, -7.7)
+    list[2]:SetHUD(true):SetSize(6, 3.671875):SetSprite('Resources/Images/UI/NameCard/content.png'):SetPosition(pos[1], pos[2]) --(10, -7.7)
 
     -- head
-    list[3] = flux.View(self.scr)
-    list[3]:SetHUD(true):SetSize(2, 2.5):SetColor(0,0,0):SetPosition(pos[1] - 1.7, pos[2] - 0.5) -- (8.3, -8.2) SetSprite('Resources/Images/yf_avatar.png')
+    --list[3] = flux.View(self.scr)
+    --list[3]:SetHUD(true):SetSize(2, 2.5):SetColor(0,0,0):SetPosition(pos[1] - 1.7, pos[2] - 0.5) -- (8.3, -8.2) SetSprite('Resources/Images/yf_avatar.png')
 
-    -- name
-    list[4] = flux.TextView(self.scr, nil, "wqy", 'name', 0.7)
-    list[4]:SetHUD(true):SetColor(0, 0, 0):SetPosition(pos[1], pos[2] + 1.4) -- (10, -6.3)
+    -- name rgb(84,58,63)
+    list[3] = flux.TextView(self.scr, nil, "wqy", 'name')
+    list[3]:SetAlign(flux.ALIGN_LEFT):SetTextColor(0.33, 0.26, 0.25):SetHUD(true):SetPosition(pos[1], pos[2] + 1.29) -- (10, -6.3)
 
-    -- hp_text
-    list[5] = flux.TextView(self.scr, nil, "wqy", 'hp', 0.7)
-    list[5]:SetAlign(flux.ALIGN_LEFT):SetHUD(true):SetColor(0, 0, 0):SetPosition(pos[1] - 0.3, pos[2] + 0.5) -- (9.7, -7.2)
+    -- level rgb(69,65,34)
+    list.lv = flux.TextView(self.scr, nil, "wqyS", 'lv')
+    list.lv:SetAlign(flux.ALIGN_LEFT):SetTextColor(0.27, 0.255, 0.13):SetHUD(true):SetPosition(pos[1]+1.82, pos[2] + 1.16) -- (10, -6.3)
+
+    -- hp_text rgb(138,58,58)
+    list[5] = flux.TextView(self.scr, nil, "wqyS", 'hp')
+    list[5]:SetTextColor(0.541, 0.227, 0.227):SetAlign(flux.ALIGN_LEFT):SetHUD(true):SetPosition(pos[1] + 0.1, pos[2] + 0.43) -- (9.7, -7.2)
 
     -- hp_bar_bg
-    list[6] = flux.View(self.scr)
-    list[6]:SetHUD(true):SetColor(0.4, 0.4, 0.4):SetSize(3, 0.2):SetPosition(pos[1] + 1.1, pos[2]) -- (11.1, -7.7)
+    --list[6] = flux.View(self.scr)
+    --list[6]:SetHUD(true):SetColor(0.4, 0.4, 0.4):SetSize(3, 0.2):SetPosition(pos[1] + 1.1, pos[2]) -- (11.1, -7.7)
 
     -- hp_bar
     list[7] = flux.View(self.scr)
-    list[7]:SetHUD(true):SetColor(1, 0, 0):SetSize(3, 0.2):SetPosition(pos[1] -0.4, pos[2]):SetAlign(flux.ALIGN_LEFT) -- (11.1, -7.7)
+    list[7]:SetHUD(true):SetSprite('Resources/Images/UI/NameCard/hp.png'):SetPaintMode(flux.PAINT_REPEAT_X):SetSize(2.3, 0.31):SetPosition(pos[1]+0.1, pos[2] + 0.01):SetAlign(flux.ALIGN_LEFT) -- (11.1, -7.7)
 
-    -- mp_text
-    list[8] = flux.TextView(self.scr, nil, "wqy", 'mp', 0.7)
-    list[8]:SetAlign(flux.ALIGN_LEFT):SetHUD(true):SetColor(0, 0, 0):SetPosition(pos[1] - 0.3, pos[2] - 0.8) -- (9.7, -8.5)
+    -- mp_text rgb(43,102,118)
+    list[8] = flux.TextView(self.scr, nil, "wqyS", 'mp')
+    list[8]:SetTextColor(0.169, 0.4, 0.463):SetAlign(flux.ALIGN_LEFT):SetHUD(true):SetPosition(pos[1] + 0.1, pos[2] - 0.5078125) -- (9.7, -8.5)
 
     -- mp_bar_bg
-    list[9] = flux.View(self.scr)
-    list[9]:SetHUD(true):SetColor(0.4, 0.4, 0.4):SetSize(3, 0.2):SetPosition(pos[1] + 1.1, pos[2] - 1.3) -- (11.1, -9)
+    --list[9] = flux.View(self.scr)
+    --list[9]:SetHUD(true):SetColor(0.4, 0.4, 0.4):SetSize(3, 0.2):SetPosition(pos[1] + 1.1, pos[2] - 1.3) -- (11.1, -9)
 
     -- mp_bar
     list[10] = flux.View(self.scr)
-    list[10]:SetHUD(true):SetColor(0, 0, 1):SetSize(3, 0.2):SetPosition(pos[1] - 0.4, pos[2] - 1.3):SetAlign(flux.ALIGN_LEFT) -- (11.1, -9)
+    list[10]:SetHUD(true):SetSprite('Resources/Images/UI/NameCard/mp.png'):SetPaintMode(flux.PAINT_REPEAT_X):SetSize(2.38, 0.31):SetPosition(pos[1]+0.1, pos[2] - 0.87635):SetAlign(flux.ALIGN_LEFT) -- (11.1, -9)
+
+    -- board
+    list[11] = flux.View(self.scr)
+    list[11]:SetHUD(true):SetSize(6, 3.671875):SetSprite('Resources/Images/UI/NameCard/inner.png'):SetPosition(pos[1], pos[2]):SetLayer(1) --(10, -7.7)
 
     list.dmgnum = flux.TextView(ScreenFight.scr, nil, 'wqy')
     list.dmgnum:SetTextColor(1, 0, 0, 0):SetHUD(true):SetPosition(pos[1], pos[2]+2.7)
@@ -89,6 +97,8 @@ function Widget.NameCard:SetVisible(visible)
     for k,v in pairs(self._viewlist) do
         if type(k) == 'number' then
             v:SetAlpha(alpha)
+        elseif k == 'lv' then
+            v:SetAlpha(alpha)
         end
     end
 end
@@ -113,11 +123,12 @@ function Widget.NameCard:Refresh()
     local list = self._viewlist
     if not ch then return end
 
-    list[4]:SetText(ch:GetAttr('name') .. ' lv.' .. ch:GetAttr('level'))
+    list[3]:SetText(ch:GetAttr('name'))
+    list.lv:SetText(' lv.' .. ch:GetAttr('level'))
 
     list[5]:SetText(ch:GetAttr('hp') .. '/' .. ch:GetAttr('hp_max'))
     list[8]:SetText(ch:GetAttr('mp') .. '/' .. ch:GetAttr('mp_max'))
     
-    list[7]:SetSize(3*ch:GetAttr('hp') / ch:GetAttr('hp_max'), 0.2)
-    list[10]:SetSize(3*ch:GetAttr('mp') / ch:GetAttr('mp_max'), 0.2)
+    list[7]:SetSize(2.38*ch:GetAttr('hp') / ch:GetAttr('hp_max'), 0.31)
+    list[10]:SetSize(2.38*ch:GetAttr('mp') / ch:GetAttr('mp_max'), 0.31)
 end

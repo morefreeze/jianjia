@@ -33,8 +33,9 @@ ScreenItem = {
             -- Éú³É¿Ø¼þ
             
             ScreenItem.txt = flux.TextView(this, nil, 'wqyS')
-            ScreenItem.txt:SetPadding(0.3):SetAlign(flux.ALIGN_TOPLEFT):SetHUD(true)
+            ScreenItem.txt:SetAlign(flux.ALIGN_TOPLEFT):SetHUD(true)
             ScreenItem.txt:SetSize(6, 7):SetColor(0.49,0.49,0.49):SetPosition(2.51, 4)
+            ScreenItem.txt:SetPadding(0.3)
 
             ScreenItem.menu = Widget.GridMenu(this, 2, 7, {-5, 0}, {5,1})
             ScreenItem.menu:SetColor(0.49,0.49,0.49)

@@ -1,7 +1,8 @@
 
 
-Scene = Class(function(self, txt, init_func, onload_func, keyinput_func, phybegin_func, phyend_func)
-    self.txt = txt
+Scene = Class(function(self, mapname, name, init_func, onload_func, keyinput_func, phybegin_func, phyend_func)
+    self.mapname = mapname
+    self.name = name
     self.viewlist = {}
     self.isload = false
     self.init_func = init_func
@@ -9,6 +10,7 @@ Scene = Class(function(self, txt, init_func, onload_func, keyinput_func, phybegi
     self.keyinput_func = keyinput_func
     self.phybegin_func = phybegin_func
     self.phyend_func = phyend_func
+    SceneManager.scene[mapname] = self
 end)
 
 -- 加载和初始化控件
@@ -61,6 +63,43 @@ function Scene:ResetEdge()
 
 end
 
+function Scene:LoadNPC()
+    local views = self.viewlist
+    local ret = require('npc.' .. self.mapname)
+    if not ret then return end
+    self.npc = ret
+
+    local function setval(_, k, v)
+        if _[k] then
+            if type(v) == 'table' and type(v[1]) == 'table' then            
+                for _k,_v in pairs(v) do
+                    _[k](_, unpack(_v))
+                end
+            else
+                _[k](_, unpack(v))
+            end
+            return true
+        end
+    end
+
+    for name,info in pairs(ret) do
+        local _ = flux.View(self.scr)
+        _:SetPhy(flux.b2_staticBody)
+        for k,v in pairs(info.prop) do
+            if not setval(_, k, v) then
+                if not setval(_, 'Set'..k, v) then
+                    print('错误: 未知的属性 ' .. k)
+                end
+            end
+        end
+        if not info.nophy then
+            _:SetLight()
+            _:PhyNewFixture()
+        end
+        views[name] = _
+    end
+end
+
 -- 将控件添加至窗体
 -- @param scr 指定的窗体
 function Scene:AddToScreen(scr)
@@ -76,9 +115,19 @@ function Scene:AddToScreen(scr)
     end
 end
 
-function Scene:KeyInput(scr, key, value)
+function Scene:KeyInput(scr, key, state)
+    local views = self.viewlist
+    if self.npc and state == flux.GLFW_PRESS then
+        if key == _b'Z' or key == flux.GLFW_KEY_SPACE then
+            for k,v in pairs(self.npc) do
+                if v.rchat and SceneManager.player:CheckFacing(views[k]) then
+                    RandomShowText(k, unpack(v.rchat))
+                end
+            end
+        end
+    end
     if self.keyinput_func then
-        self.keyinput_func(self, scr, key, value)
+        self.keyinput_func(self, scr, key, state)
     end
 end
 

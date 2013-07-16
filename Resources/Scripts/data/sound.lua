@@ -8,7 +8,8 @@ function Sound:Load(data)
 end
 
 Sound.BGM = {
-    Newbie1 = {id=1, txt='新手村背景音乐', path="Resources/Sounds/bgm-1.mid", tid=1},
+    JinZhao = {id=1, name='还看今朝', txt='开场背景音乐', path="Resources/Sounds/bgm-1.mid", tid=1},
+    Newbie = {id=2, name='', txt='新手村背景音乐', path="Resources/Sounds/bgm-2.mid", tid=1},
 }
 
 Sound.SE = {}

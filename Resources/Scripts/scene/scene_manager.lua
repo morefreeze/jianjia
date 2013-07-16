@@ -29,38 +29,36 @@ function SceneManager:Get(scene)
     return SceneManager.scene[scene]
 end
 
--- 获取场景名字
-function SceneManager:GetSceneName()
-    if self.now then
-        return self.now.name
-    end
+-- 获取当前场景
+function SceneManager:GetScene()
+    return self.now
 end
 
 -- 加载一个新场景
 function SceneManager:Load(scene, x, y)
     theWorld:DelayRun(wrap(function()
         self:Unload()
-        self.splash:SetAlpha(1):AnimCancel()
-        self.splash:Sleep(0.5):FadeOut(0.5):AnimDo()
-        local find_index = scenes_fifo:find (scene)
-        if find_index > 1 then
-            scenes_fifo:set_priority ( find_index)
-        else
-            local pop_scene = scenes_fifo:push (scene)
-            if not table.empty(pop_scene) then            
-                print ("unload scene" , pop_scene )
-    --			这里调unload函数
-    --			pop_scenes.unload()
+        self.splash:SetAlpha(0):AnimCancel()
+        self.splash:FadeIn(0.3, wrap(function()
+            local find_index = scenes_fifo:find (scene)
+            if find_index > 1 then
+                scenes_fifo:set_priority ( find_index)
+            else
+                local pop_scene = scenes_fifo:push (scene)
+                if not table.empty(pop_scene) then            
+                    print ("unload scene" , pop_scene )
+        --			这里调unload函数
+        --			pop_scenes.unload()
+                end
+                require('scene.' .. scene)
             end
-            require('scene.' .. scene)
-        end
-        if x and y then
-            self.player:SetPosition(x, y)
-        end
-        self.scene[scene]:AddToScreen(self.scr)
-        self.now = self.scene[scene]
-        self.now.name = scene
-        ScreenGame.info:Refresh()
+            if x and y then
+                self.player:SetPosition(x, y)
+            end
+            self.scene[scene]:AddToScreen(self.scr)
+            self.now = self.scene[scene]
+            ScreenGame.info:Refresh()        
+        end)):Sleep(0.5):FadeOut(0.5):AnimDo()
     end))
 end
 

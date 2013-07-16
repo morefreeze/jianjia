@@ -34,7 +34,7 @@ ScreenStart = {
         
             ScreenStart.bg = flux.View(this)
             ScreenStart.bg:SetHUD(true):SetSize(size.x, size.y*3):SetPosition(0, -size.y*1)
-            ScreenStart.bg:SetSpriteFrame("Resources/Images/start/bg/xk.png", 0)
+            ScreenStart.bg:SetSpriteFrame("Resources/Images/start/bg/sun.png", 0)
             
             --ScreenStart.bg:SetSpriteFrame("Resources/Images/start/bg/xingkomg1.jpg", 1)
             --ScreenStart.bg:SetSpriteFrame("Resources/Images/start/bg/xingkomg2.jpg", 2)
@@ -45,7 +45,8 @@ ScreenStart = {
 
             ScreenStart.txt = flux.TextView(this, nil, 'wqyS', '按←→切换菜单项，Space或Enter开始')
             ScreenStart.txt:SetPosition(0, -5):SetHUD(true)
-            ScreenStart.txt:SetTextColor(0.69,0.69,0.69)
+            --ScreenStart.txt:SetTextColor(0.69,0.69,0.69)
+            ScreenStart.txt:SetTextColor(1,1,1)
 
             ScreenStart.menu = Widget.SliderIcon(this)
             ScreenStart.menu:SetData({'开始', 'Resources/Images/start/start.png'}, {'关于', 'Resources/Images/start/about.png'}, {'离开', 'Resources/Images/start/quit.png'})

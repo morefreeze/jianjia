@@ -6,7 +6,7 @@ local function OnInit(self, scr)
     local views = self.viewlist
     views.bg = flux.View(scr)
     views.bg:SetSize(theWorld:GetSize()):SetHUD(true)
-    Sound:Load(Sound.BGM.Newbie1)
+    Sound:Load(Sound.BGM.JinZhao)
 
 end
 
@@ -16,9 +16,9 @@ local function OnLoad(self, scr)
     theWorld:DelayRun(wrap(function()
         scr:SetPlayer(SceneManager.player)
         SceneManager.player:Reset()
-        theSound:SetBGM(Sound.BGM.Newbie1.id)
+        theSound:SetBGM(Sound.BGM.JinZhao.id)
         ShowText(0, {
-            {'项目组', '亲爱的玩家们，当你们看到这段话的时候，证明你们成功的进入了游戏。这里是《蒹葭：冒险之旅》工程版本r2'},
+            {'项目组', '亲爱的玩家们，当你们看到这段话的时候，证明你们成功的进入了游戏。这里是《蒹葭：冒险之旅》工程版本r3'},
             {'项目组', '我们决定使用不断发布工程版本，然后向后迭代的方式来进行游戏开发。'},
             {'项目组', '因此，你们会看到一些很挫的东西出现在游戏里面，不必介怀。'},
             {'项目组', '若干个版本以后，他们自会消失。'},
@@ -55,4 +55,4 @@ local function PhyContactEnd(self, scr, a, b)
     
 end
 
-SceneManager.scene.newbie_start = Scene({'', '开始场景'}, OnInit, OnLoad, KeyInput, PhyContactBegin, PhyContactEnd)
+Scene('newbie_start', '开始场景', OnInit, OnLoad, KeyInput, PhyContactBegin, PhyContactEnd)

@@ -9,9 +9,9 @@ Widget.SliderIcon = Class(Widget.Widget, function(self, scr, pos)
 
     local list = self._viewlist
     list.pic1 = flux.View(scr)
-    list.pic1:SetSize(3, 3):SetHUD(true)
+    list.pic1:SetSize(6, 6):SetHUD(true)
     list.pic2 = flux.View(scr)
-    list.pic2:SetSize(3, 3):SetAlpha(0):SetHUD(true)
+    list.pic2:SetSize(6, 6):SetAlpha(0):SetHUD(true)
     list.txt = flux.TextView(scr, nil, 'wqyL')
     list.txt:SetHUD(true)
     self:_UpdatePos()
@@ -51,7 +51,8 @@ end
 function Widget.SliderIcon:_UpdatePos()
     local list = self._viewlist
     list.pic1:SetPosition(self.pos[1], self.pos[2]+2)
-    list.txt:SetPosition(self.pos[1], self.pos[2]-1)
+    --list.txt:SetPosition(self.pos[1], self.pos[2]-1)
+    list.txt:SetPosition(self.pos[1], self.pos[2]-2)
 end
 
 -- ¸üÐÂ

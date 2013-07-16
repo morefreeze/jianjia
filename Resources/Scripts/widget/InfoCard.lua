@@ -16,6 +16,10 @@ Widget.InfoCard = Class(Widget.Widget, function(self, scr, pos)
     list.alignment:SetTextColor(1, 1, 1)
     list.alignment:SetAlign(flux.ALIGN_RIGHT):SetHUD(true)
     
+    list.volume = flux.TextView(ScreenFight.scr, nil, 'wqyS')
+    list.volume:SetTextColor(1, 1, 1)
+    list.volume:SetAlign(flux.ALIGN_RIGHT):SetHUD(true)
+    
     self:_UpdatePos()
 end)
 
@@ -23,12 +27,14 @@ function Widget.InfoCard:_UpdatePos()
     local list = self._viewlist
     list.mapname:SetPosition(self.pos[1], self.pos[2])
     list.alignment:SetPosition(self.pos[1], self.pos[2]-0.5)
+    list.volume:SetPosition(self.pos[1], self.pos[2]-1)
 end
 
 -- ¸üÐÂ
 function Widget.InfoCard:Refresh()
-    local list = self._viewlist    
-    list.mapname:SetText(SceneManager.now.txt[1])
+    local list = self._viewlist
+    list.mapname:SetText(SceneManager.now.name)
+    self:RefreshVolume()
     
     local amtext
     if data.player.alignment == 1 then
@@ -47,4 +53,8 @@ function Widget.InfoCard:Refresh()
     else
         list.alignment:SetText('')
     end
+end
+
+function Widget.InfoCard:RefreshVolume()
+    self._viewlist.volume:SetText('ÒôÁ¿: ' .. theSound:GetVolume())
 end

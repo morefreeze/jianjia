@@ -12,18 +12,20 @@ data = {
         scene = 'newbie_start', -- 地点
 		alignment = 0, -- 阵营
 	},
+    story = {},
 	ch = {},
     items = {},
 }
 
 math.randomseed(os.time())
 
-require('sys.fight')
+require('sys.turnbased')
 
 require('data.sound')
 require('data.enemy')
 require('data.spell')
 require('data.items')
+require('data.npc')
 require('data.character')
 
 -- [[敌人部分]]
@@ -41,7 +43,7 @@ sys = {
 		if ScreenGame.player then
 			local pos = ScreenGame.player:GetPosition()
 			data.player.x, data.player.y = pos.x, pos.y
-            data.player.scene = SceneManager:GetSceneName() or data.player.scene
+            data.player.scene = SceneManager:GetScene().mapname or data.player.scene
 		end
 		local f = io.open('Savedata/flag' .. slot, 'w+')
         
@@ -67,6 +69,10 @@ sys = {
 			for k,v in pairs(data.ch) do
                 data.ch[k] = Character(v)
 			end
+            -- 向下兼容
+            if not data.story then
+                data.story = {}
+            end
 		end
 	end,
 }

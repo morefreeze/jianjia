@@ -203,7 +203,14 @@ local function InitRes(this, bgpic)
 end
 
 --窗体序列号,对话内容,立绘,背景图
-function ShowText(fromcode, textlist, ch_info, bgpic, callback, allow_esc)
+function ShowText(...)
+    local param = {...}
+    if type(param[1]) == 'number' then
+        fromcode, textlist, ch_info, bgpic, callback, allow_esc = ...
+    else
+        fromcode, textlist, ch_info, bgpic, callback, allow_esc = 0, ...
+        print(fromcode, textlist, ch_info)
+    end
     -- fromcode=100
     -- textlist{{'名字','第一句话', 立绘编号, 立绘位置, 语音,{'分支1','分支2'...},callback}, '第二句话'}
     -- textlist{{'名字','第一句话', 立绘编号, 立绘位置, 语音,{'分支1','分支2'...},callback}, {{'分支1res'},{'分支2res'}...}}
@@ -359,9 +366,22 @@ end
 -- 随机对话函数
 -- 传入若干类型为 table 的参数，每个 table 都是一套 ShowText 的参数。
 -- 随机选择一套参数进行调用，以实现 NPC 的随机对话功能
-function RandomShowText(...)
+function RandomShowText(name, ...)
     local t = { ... }
     local index = math.random(1, #t)
+    if ScreenText.last_name == name then
+        while ScreenText.last[index] do
+            index = math.random(1, #t)
+        end
+        ScreenText.last[index] = true
+
+        if table.length(ScreenText.last) == #t then
+            ScreenText.last = {}
+        end
+    else
+        ScreenText.last = {}
+    end
     local select = t[index]
     ShowText(select[1], select[2], select[3], select[4])
+    ScreenText.last_name = name
 end

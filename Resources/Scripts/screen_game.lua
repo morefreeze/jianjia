@@ -1,4 +1,6 @@
 
+local bit = require("bit")
+
 
 ScreenGame = {
 
@@ -14,6 +16,7 @@ ScreenGame = {
             ScreenGame.scr:SetPlayer(ScreenGame.player)
             ScreenGame.player:SetPosition(data.player.x, data.player.y)
             SceneManager:Load(data.player.scene)
+            ScreenGame._bg:SetAlpha(1):Sleep(0.7, wrap(function() ScreenGame._bg:SetAlpha(0) end)):AnimDo()
         end))
 
         -- AfterPush 事件
@@ -77,12 +80,24 @@ ScreenGame = {
                         theWorld:PushScreen(ScreenStart.scr)
                     end)
                 elseif key == _b'C' then
-                    if data.ch[1] then
-                        theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
-                        show_character_content(data.ch[1])
-                    end
+                    --if data.ch[1] then
+                    --    theWorld:PushScreen(ScreenCharacter.scr, flux.SCREEN_APPEND)
+                    --    show_character_content(data.ch[1])
+                    --end
                 elseif key == _b'B' then
                     ShowItemPanel(false)
+                elseif key == flux.GLFW_KEY_KP_ADD then
+                    local v = theSound:GetVolume()
+                    if v < 100 then
+                        theSound:SetVolume(v + 10)
+                        ScreenGame.info:RefreshVolume()
+                    end
+                elseif key == flux.GLFW_KEY_KP_SUBTRACT then
+                    local v = theSound:GetVolume()
+                    if v > 0 then
+                        theSound:SetVolume(v - 10)
+                        ScreenGame.info:RefreshVolume()
+                    end
                 end
             end
         end))
@@ -91,21 +106,36 @@ ScreenGame = {
         ScreenGame.scr:lua_Init(wrap(function(this)
             -- 生成控件
             ScreenGame.player = flux.RMCharacter(this)
-            ScreenGame.player:SetSpeed(6):SetSprite('Resources/Images/ch/yf.png')
+            ScreenGame.player:SetSpeed(6):SetSprite('Resources/Images/ch/yf.png', 16)
             ScreenGame.player:SetSize(2.2, 2.64)
             ScreenGame.player:SetPhy()
             ScreenGame.player:PhyNewFixture(flux.RM_Character) -- flux.RM_Character, false, 1.5, 0.4, flux.Vector2(0, -1.7)
+            ScreenGame.player:SetFrame(8)
+            ScreenGame.player:SetLight()
 
             ScreenGame.map = flux.TmxMap(this)
             ScreenGame.map:SetBlockSize(2)
             ScreenGame.map:SetPhy(flux.b2_staticBody)
+            ScreenGame.map:SetLight()
+
+            ScreenGame._bg = flux.View(this)
+            ScreenGame._bg:SetSize(theWorld:GetSize()):SetColor(0, 0, 0):SetHUD(true)
+
+            ScreenGame._layer = flux.View(this)
+            --ScreenGame._layer:SetSize(theWorld:GetSize()):SetColor(0.35, 0.29, 0.16, 0.4):SetHUD(true) -- 90 73 41
 
             local size = theWorld:GetSize()
             ScreenGame.info = Widget.InfoCard(this, {size.x/2 - 0.34, size.y/2 - 0.8})
 
             this:AddView(ScreenGame.player)
+            this:AddView(ScreenGame._bg, 150)
             this:AddView(ScreenGame.map, -1)
+            this:AddView(ScreenGame._layer, 149)
             ScreenGame.info:AddToScreen(this)
+            --local sc = flux.Color(0.22, 0.22, 0.9)
+            --local sc = flux.Color(0.7, 0.39, 0.09)
+            --local sc = flux.Color(0.35, 0.29, 0.16)
+            --this:SetSpriteColor(sc)
 
             -- 注册按键
             this:RegKey(_b'Z')
@@ -118,6 +148,40 @@ ScreenGame = {
             this:RegKey(flux.GLFW_KEY_RIGHT)
             this:RegKey(flux.GLFW_KEY_UP)
             this:RegKey(flux.GLFW_KEY_DOWN)
+            this:RegKey(flux.GLFW_KEY_DOWN)
+            this:RegKey(flux.GLFW_KEY_KP_ADD)
+            this:RegKey(flux.GLFW_KEY_KP_SUBTRACT)
+            
+            ScreenGame.player:lua_MoveCallback(wrap(function(is_move, dir)
+                --print(is_move, dir)
+                local self = ScreenGame.player
+                if not is_move then
+                    self:AnimCancel()
+                    if dir == flux.RD_LEFT then
+                        self:SetFrame(0)
+                    elseif dir == flux.RD_RIGHT then
+                        self:SetFrame(4)
+                    elseif dir ==flux.RD_TOP then
+                        self:SetFrame(12)
+                    elseif dir == flux.RD_BOTTOM then
+                        self:SetFrame(8)
+                    end
+                else
+                    if bit.band(dir, flux.RD_LEFT) ~= 0 then
+                        self:AnimCancel()
+                        self:PlayFrame(0.6, 0,3):Loop()
+                    elseif bit.band(dir, flux.RD_RIGHT) ~= 0 then
+                        self:AnimCancel()
+                        self:PlayFrame(0.6, 4,7):Loop()
+                    elseif bit.band(dir, flux.RD_TOP) ~= 0 then
+                        self:AnimCancel()
+                        self:PlayFrame(0.6, 12,15):Loop()
+                    elseif bit.band(dir, flux.RD_BOTTOM) ~= 0 then
+                        self:AnimCancel()
+                        self:PlayFrame(0.6, 8,11):Loop()
+                    end
+                end
+            end))
             
             SceneManager:Init()
         end))
@@ -136,7 +200,9 @@ ScreenGame = {
     Refresh = function()
         scr = ScreenGame.scr
         scr:AddView(ScreenGame.map)
+        scr:AddView(ScreenGame._bg, 150)
         scr:AddView(ScreenGame.player)
+        scr:AddView(ScreenGame._layer, 149)
         ScreenGame.info:AddToScreen(scr)
     end,
 

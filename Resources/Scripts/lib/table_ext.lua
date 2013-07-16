@@ -54,7 +54,6 @@ function table.find(t, p)
 end
 
 --table的长度
--- 准备废弃
 function table.length(t)
     local i = 0
     for k, v in pairs(t) do

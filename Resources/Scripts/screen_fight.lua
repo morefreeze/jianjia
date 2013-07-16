@@ -1,4 +1,11 @@
 
+local function continue_loop()
+    local ret, info = coroutine.resume(ScreenFight.co)
+    if ret ~= true then
+        print(info)
+    end
+end
+
 ScreenFight = {
     new = function()
         -- 基础设定
@@ -19,16 +26,18 @@ ScreenFight = {
             
             ScreenFight.namecardset:HideSelect()
             ScreenFight.enemypic:HideSelect()
+            ScreenFight.last_bgm = theSound:GetBGM()
+            theSound:SetBGM(0)
 
             -- 开始战斗循环
             ScreenFight.fightmenu:SetVisible(false)
-            coroutine.resume(ScreenFight.co)
+            continue_loop()            
         end))
 
         ScreenFight.scr:lua_OnPop(wrap(function(this)
             ScreenFight.splash:AnimCancel()
+            theSound:SetBGM(ScreenFight.last_bgm)
         end))
-        
         
         ScreenFight.scr:lua_OnResume(wrap(function(this, from, ret)
             if from == 4 and ret ~= 0 then
@@ -36,7 +45,7 @@ ScreenFight = {
                 ScreenFight.Input = nil
                 ScreenFight.fight:DoAction(ScreenFight.obj, ScreenFight.action)
                 theWorld:DelayRun(wrap(function()
-                    coroutine.resume(ScreenFight.co)
+                    continue_loop()
                 end), 0.4)
             end
         end))
@@ -83,7 +92,7 @@ ScreenFight = {
                     end
                     ScreenFight.namecardset:Refresh()
                     theWorld:DelayRun(wrap(function()
-                        coroutine.resume(ScreenFight.co)
+                        continue_loop()
                     end), 0.8)
                     ScreenFight.Input = nil
                 end
@@ -154,7 +163,7 @@ local function fightloop()
                 ScreenFight.namecardset._widgetlist[to[1].index]:ShowDmg(0-dmg[1])
                 ScreenFight.namecardset:Refresh()
                 theWorld:DelayRun(wrap(function()
-                    coroutine.resume(ScreenFight.co)
+                    continue_loop()
                 end), 0.4)
             end), 0.4)
         end
@@ -167,6 +176,7 @@ local function fightloop()
                 theWorld:PopScreen()
             end), 0.8)
         end
+        print(12)
     end
 end
 

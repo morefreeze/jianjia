@@ -29,5 +29,5 @@ function Widget.WidgetSet:SetPosition(x, y)
     self:_UpdatePos()
 end
 
-require('widget.NameCardSet')
-require('widget.CustomWidgetsSet')
+--require('widget.NameCardSet')
+--require('widget.CustomWidgetsSet')

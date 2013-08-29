@@ -8,13 +8,14 @@ Widget.SliderIcon = Class(Widget.Widget, function(self, scr, pos)
     Widget.Widget._ctor(self, scr, pos, "WIDGET.SLIDERICON")
 
     local list = self._viewlist
-    list.pic1 = flux.View(scr)
+    list.pic1 = flux.View()
     list.pic1:SetSize(6, 6):SetHUD(true)
-    list.pic2 = flux.View(scr)
+    list.pic2 = flux.View()
     list.pic2:SetSize(6, 6):SetAlpha(0):SetHUD(true)
-    list.txt = flux.TextView(scr, nil, 'wqyL')
+    list.txt = flux.TextView('wqy', 40)
     list.txt:SetHUD(true)
     self:_UpdatePos()
+
 end)
 
 function Widget.SliderIcon:SetSel(sel)
@@ -64,9 +65,11 @@ end
 function Widget.SliderIcon:KeyInput(scr, key, state)
     local list = self._viewlist
     local function _update(step)
+    
         if self.lock then
             return
         end
+
         self.sel = self.sel + step
         if self.sel <= 0 then
             self.sel = 1
@@ -114,7 +117,7 @@ function Widget.SliderIcon:KeyInput(scr, key, state)
         elseif key == flux.GLFW_KEY_SPACE or key == _b'Z' or key == flux.GLFW_KEY_ENTER then
             if self.sel_callback then
                 self.sel_callback(self.sel)
-            end            
+            end
         end
     end
 end

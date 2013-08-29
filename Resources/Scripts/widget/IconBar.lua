@@ -9,11 +9,11 @@ Widget.IconBar = Class(Widget.Widget, function(self, scr, pos, size)
 
     local list = self._viewlist
     for i=1,size do
-        list[i] = flux.View(scr)
+        list[i] = flux.View()
         list[i]:SetPosition(pos[1]+(i-2)*2, pos[2]):SetSize(1.25, 1.25):SetHUD(true)
     end
     
-    list.sel = flux.View(scr)
+    list.sel = flux.View()
     list.sel:SetLayer(-1):SetHUD(true)
     list.sel:SetPosition(pos[1]-2, pos[2]):SetSize(1.3, 1.3):SetColor(0.69,0.69,0.69, 0.6) -- SetSprite('Resources/Images/UI/iconbar_border.png')
     

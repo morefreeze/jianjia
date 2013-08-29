@@ -45,9 +45,9 @@ function Widget.Widget:GetVisible()
     return self._visible
 end
 
-require('widget.GridMenu')
-require('widget.NameCard')
-require('widget.EnemyImg')
-require('widget.InfoCard')
+--require('widget.GridMenu')
+--require('widget.NameCard')
+--require('widget.EnemyImg')
+--require('widget.InfoCard')
 require('widget.IconBar')
 require('widget.SliderIcon')

@@ -5,8 +5,8 @@ package.path = package.path .. ';./Resources/Scripts/?.lua'
 package.path = package.path .. ';./Resources/Scripts/lib/?.lua'
 
 config = {
-    SCREEN_WIDTH = 1024,
-    SCREEN_HEIGHT = 768,
+    SCREEN_WIDTH = 800,
+    SCREEN_HEIGHT = 600,
     TITLE = '蒹葭：冒险之旅 dev-r4',
     VER = 'v0.01',
 }

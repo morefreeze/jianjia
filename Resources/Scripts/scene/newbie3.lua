@@ -3,14 +3,6 @@ require('scene.init')
 
 scene = Scene()
 
-function scene:OnNew()
-  print('onnew')
-end
-
-function scene:OnExit(self, scr, index)
-	print('onexit')
-end
-
 function scene:CollisionBegin(scr, a, b)
     if a and b then
         if a.index == flux.PHYINDEX_CHARACTER then

@@ -3,17 +3,25 @@ require('scene.init')
 
 scene = Scene()
 
-function scene:OnNew()
-  print('onnew')
-end
+function scene:OnNew(scr)
+    Scene.OnNew(self, scr)
 
-function scene:OnLoad(scr)
-    Scene:OnLoad(scr)
-    print('onload')
-end
-
-function scene:OnExit(self, scr, index)
-	print('onexit')
+    self.objs = {
+        npc1 = {
+            prop = {
+                Size = {1.9, 2.595},
+                SpriteFrame = {{"Resources/Images/ch/PC01.png", 0}, {"Resources/Images/ch/PC02.png", 1}},
+            },
+            rchat = {
+                {0, {{'NPC', '你好，我是NPC'}}},
+                {0, {{'NPC', '嘿！站住！你存档了吗？'}}},
+                {0, {{'NPC', '为什么我总是要随机说这些无聊的话？'}}},
+            },
+            code = function(scr, view)
+                view:PlayFrame(1, 0, 1):Loop()
+            end
+        },
+    }
 end
 
 function scene:CollisionBegin(scr, a, b)

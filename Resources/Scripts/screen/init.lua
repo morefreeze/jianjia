@@ -28,7 +28,7 @@ function Screen.LoadScene(self, name, x, y)
 
         self.scene = scene
         self.scr:LoadScene(name or '')
-        
+
         -- 地图
         if self.map then
 			self.phy:ClearTmx()
@@ -38,7 +38,7 @@ function Screen.LoadScene(self, name, x, y)
             local pos = self.map:GetSize()
             theCamera:SetSize(pos.x, pos.y)
         end
-
+        
         scene:OnLoad(self)
         if x and y then
             self.phy:SetPos(self.player, x, y)

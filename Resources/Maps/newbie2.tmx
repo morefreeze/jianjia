@@ -4,7 +4,7 @@
   <image source="ForestTiles.png" width="384" height="5440"/>
  </tileset>
  <tileset firstgid="511" name="BuildingsTiles2" tilewidth="64" tileheight="64">
-  <image source="BuildingsTiles2.png" width="1000" height="1415"/>
+  <image source="BuildingsTiles2.png" width="960" height="1408"/>
  </tileset>
  <tileset firstgid="841" name="UtilsTiles" tilewidth="64" tileheight="64">
   <image source="UtilsTiles.png" width="384" height="960"/>
@@ -16,7 +16,7 @@
  </layer>
  <layer name="块层 2" width="34" height="25">
   <data encoding="base64" compression="zlib">
-   eJzFlksvQ0EUx+cKWmlVqCLx+AJCLOx0IfEp2LBhiwVCiSL4Sti4m27Y2JKIeLW1oEvvx390Tu4xnXt79V7xT365j5n0/O85Z2aaFj+VZvcREAVN2v1f6BScGzgDzSABWrT7oFoGK4wMuAbjYALMWkLMgXmr/J7HToJ2kArBx7r2vKF8TIIpsID4i2BJ+dBjp0U4cvMxDWZABvFXwZryQfITX59z5DF3G+wwdpWPR/AkfSH+JtgCNz5i/1Zu3xNRPt7BR5Xf4OvlEj6vZM6scPzJPrwQzhrJs7EUYnRYzpX3bAHPRXBn8HHiM/YII2kYp9x1I0aP5Vx5z3r5qFWUb75HUQ4o/zp5cCAqfQwE8CHzHQNx4exRlAP53Yd43hPluLa6HguzD6nBGjyklY9W0MZ8UD4K6rvdCLMuVHe+X/F8UC72xXc97Ae8I0qW9z4hVW2c5NUflA/UIUt9+YznF/AK3nx/bXXReuRnGM8H1cAWZR+fcgKuFqjT6jIUwIepLjwftvKRUz4aQCOIgKjmoz+AD1Nd9HxQj0gfMRCX+xpIaD6GA/iQdekEXaJyvdyrfkR/jsoeLYW4Pkw+ekGfqOwPXp+w1mi9QpepP0i8PmH5oLO9Fnn5GPulP7ez3XR+mM4TkPUzt1aKGvI80d8ROY+xanj9bpHt0f+NX92Kyv9Kfsb86gurNOCQ
+   eJzFlksvQ0EUx+d6tdIiVJF4fAEhFna6kFj5CGzYsMUCoUQRfCVs3E03bGxJRLzaWtCl9+M/Oif3mM69vW2vOMkvM3Nn0vOfc87MNCF+W4L1QyAMGrX+X9gZuDBwDppAM2jR+tXaClhlJMENmACTYM4SYh4sWIXv3HcMtIN4ADo2tPGm0jEFpsEi/C+BZaVD950QwZibjhkwC5LwvwbWlQ4yP/71Nccea3fALmNP6XgCz1IX/G+BbXDrw3e55rafkNLxAT5L/AY/L1fQeS1jZgWjT9bhpXDOSIbNxeGjw3JaXrNZjHPg3qDj1KfvEUbMME+x64aPHstpec166ajUKN78jqIYUPx1MuBQFOsYqEKHjHcERIVzR1EM5L6PMN4XBb+2ak+EWYe0QZ9+x2udfkLpaAVtTAfFI6v27UaQeaG88/uKx4NicSB+8mE/4huRt7zvCWml5ikuXvVB8UAeUlSXLxi/gjfwXtaO3TVIo/PI3zAeD8qBLQo6vuQCtBao0fIyVIUOU154PGylI6101IMGEAJhTUd/FTpMedHjQTUidURAVN5roFnTMVymDm4yL52gSxSflwdVj6jPUVmj+QDPh0lHL+gTxfXB8xPUGa1T6GaqDzKen6B00NteiXnpGCtTn9vbbno/TO8JSPlZWyk5Dfme6N+ItMdcKbx+N8fu6P/Gr92J4v9Kfub82jeSfOIM
   </data>
  </layer>
  <layer name="层 3" width="34" height="25">
@@ -56,12 +56,12 @@
    <polyline points="0,0 0,-526 377,-525 379,-714 526,-713 525,-321 272,-317 269,7"/>
   </object>
   <object x="987" y="352">
-   <polyline points="0,0 -57,0 -60,-200 -40,-199 -44,-39 3,-37"/>
+   <polyline points="0,14 -61,14 -62,-186 -45,-186 -46,-17 -1,-18"/>
   </object>
   <object x="1099" y="297">
-   <polyline points="0,0 -5,20 -53,21 -61,-1 -104,2 -114,-67 -129,-67 -130,-101 -121,-128 -122,-192 -103,-252 67,-249 76,-292 189,-288 195,-258 203,-189 204,-169 231,-167 258,-79 257,-56 247,-55 247,0 234,-3 233,-66 197,-65 209,-43 216,-20 167,-16 168,-6 188,-7 189,20 165,23 165,37 128,37 77,36 44,36 45,28 20,28 17,0"/>
+   <polyline points="0,13 -6,37 -55,37 -61,14 -111,13 -113,-55 -130,-56 -130,-101 -124,-117 -125,-175 -110,-239 64,-236 74,-278 182,-275 192,-257 203,-189 200,-153 232,-149 263,-65 256,-44 247,-44 245,11 234,9 234,-48 197,-49 214,-28 214,-1 164,-3 163,8 187,6 188,34 163,34 165,50 133,51 82,53 44,53 45,42 21,41 17,15"/>
   </object>
-  <object x="1280" y="334">
+  <object x="1278" y="349">
    <polyline points="0,0 23,1 23,32 0,32"/>
   </object>
   <object x="942" y="1062">
@@ -75,6 +75,18 @@
   </object>
   <object x="1029" y="1282">
    <polyline points="0,0 47,0 56,10 56,37 48,45 35,45 34,57 20,58 20,46 3,45 -3,38 -4,10"/>
+  </object>
+  <object x="1335" y="402">
+   <polyline points="0,0 60,2 58,-197 42,-197 45,-25 -1,-26"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="obj" width="34" height="25">
+  <object name="npc1" type="npc" x="1638" y="1136" width="28" height="24">
+   <properties>
+    <property name="" value=""/>
+    <property name="offsetx" value="-123"/>
+   </properties>
+   <ellipse/>
   </object>
  </objectgroup>
 </map>

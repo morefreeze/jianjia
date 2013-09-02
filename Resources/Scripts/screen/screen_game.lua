@@ -82,6 +82,10 @@ ScreenGame:lua_KeyInput(wrap(function(scr, key, scancode, action, mods)
             self.player:move(flux.TD_UP)
         elseif key == flux.GLFW_KEY_DOWN then
             self.player:move(flux.TD_DOWN)
+        elseif key == _b'Z' or key == flux.GLFW_KEY_SPACE then
+            if self.phy:QueryViewByDir(self.player, self.player:GetDir()) then
+                print('NPC find!')
+            end
         end
     elseif action == flux.GLFW_RELEASE then
         if key == flux.GLFW_KEY_RIGHT then

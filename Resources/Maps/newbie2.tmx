@@ -81,10 +81,11 @@
   </object>
  </objectgroup>
  <objectgroup name="obj" width="34" height="25">
-  <object name="npc1" type="npc" x="1638" y="1136" width="28" height="24">
+  <object name="npc1" type="npc" x="1638" y="1136" width="62" height="58">
    <properties>
     <property name="" value=""/>
     <property name="offsetx" value="-123"/>
+    <property name="phyindex" value="0"/>
    </properties>
    <ellipse/>
   </object>

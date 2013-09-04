@@ -2,17 +2,24 @@
 -- Scene 2013.8.6， fy
 -- 场景数据类
 
-Scene = Class()
+Scene = Class(function(self, name)
+    self.mapname = name
+end)
 
 -- 场景新建
 function Scene:OnNew(scr)
     self.scr = scr
     self.objs = self.objs or {}
+    self.objindex = {}
 end
 
 -- 场景内存被释放
 function Scene:OnFree()
 
+end
+
+function Scene:GetInfoFromIndex(v)
+    return self.objindex[v]
 end
 
 function Scene:LoadOBJ(name, info, phyinfo)
@@ -45,8 +52,11 @@ function Scene:LoadOBJ(name, info, phyinfo)
         self.scr:AddView(_)
 
         if phyinfo.data then
+            -- FLAG: 注意，这里居然会保存 _ 的引用！这可能会导致一个内存泄露问题。
             phyinfo.data.v = _
         end
+
+        self.objindex[phyinfo.data.index] = {base=info, phy=phyinfo}
     end
 
     if info.code then
@@ -58,9 +68,8 @@ end
 
 -- 场景被加载
 function Scene:OnLoad()
+    local scr = self.scr
     if not self.is_init then
-        local scr = self.scr
-
         local infomap = scr.phy:GetObjectInfo()
         for k,v in pairs(self.objs) do 
             if infomap:has_key(k) then
@@ -79,6 +88,9 @@ function Scene:OnLoad()
 
         self.is_init = true
     end
+    
+    scr.mapname:SetText(self.mapname)
+    
 end
 
 -- 碰撞开始

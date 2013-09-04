@@ -67,7 +67,7 @@ end))
 
 -- 按键响应
 ScreenStart:lua_KeyInput(wrap(function(scr, key, scancode, action, mods)
-    --print(key, scancode, action, mods)
+
     local self = ScreenStart
 
     if action == flux.GLFW_PRESS then
@@ -77,10 +77,10 @@ ScreenStart:lua_KeyInput(wrap(function(scr, key, scancode, action, mods)
             self.menu:KeyInput(scr, key, action)
         end
     end
+
 end))
 
 -- OnPush 事件
 ScreenStart:lua_OnPush(wrap(function(this)
     theSound:SetBGM(0)
-    --ScreenStart.bg:PlayFrame(2, 0, 6):Sleep(15):Loop()
 end))

@@ -89,3 +89,11 @@ end
 
 ScreenStart = Screen()
 ScreenGame = Screen()
+ScreenMsgBox = Screen()
+ScreenMsgBox = Screen()
+ScreenText = Screen()
+
+require('screen.screen_game')
+require('screen.screen_start')
+require('screen.screen_msgbox')
+require('screen.screen_text')

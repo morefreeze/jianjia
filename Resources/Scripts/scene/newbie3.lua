@@ -1,7 +1,7 @@
 
 require('scene.init')
 
-scene = Scene()
+scene = Scene('影帆镇')
 
 function scene:CollisionBegin(scr, a, b)
     if a and b then

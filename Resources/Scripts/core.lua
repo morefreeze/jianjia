@@ -25,8 +25,6 @@ require('table_ext')
 require('langs.lang')
 
 require('screen.init')
-require('screen.screen_game')
-require('screen.screen_start')
 --require('sys')
 
 require('widget.widget')

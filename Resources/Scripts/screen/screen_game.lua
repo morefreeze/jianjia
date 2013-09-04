@@ -1,14 +1,30 @@
 ﻿
 local bit = require("bit")
 
+relp = {
+    p1 = flux.View(),
+    p2 = flux.View(),
+    p3 = flux.View(),
+    p4 = flux.View(),
+    
+    reset = function()
+        local size = theWorld:GetSize()
+        relp.p1:SetPosition(-size.x/2,  size.y/2)
+        relp.p2:SetPosition( size.x/2,  size.y/2)
+        relp.p3:SetPosition( size.x/2, -size.y/2)
+        relp.p4:SetPosition(-size.x/2, -size.y/2)
+    end,
+}
+
 ScreenGame:lua_Init(wrap(function(scr)
 
     local self = ScreenGame
     self.phy = flux.ChipmunkWorld()
     theWorld:SetPhy(self.phy)
-	
+    thePhy = self.phy
+    relp.reset()
+
 	self.phy:lua_CollisionBegin(wrap(function(base, a, b)
-		-- print(base, a, b)
         self.scene:CollisionBegin(self, a, b)
 	end))
 
@@ -20,6 +36,12 @@ ScreenGame:lua_Init(wrap(function(scr)
     self.player:SetSprite('Resources/Images/ch/evans.png', 16)
     self.player:SetSize(2.2, 2.64)
     self.phy:AddTileCharacter(self.player)
+    
+    self.mapname = flux.TextView('wqy', 15)
+    self.mapname:SetAlign(flux.ALIGN_RIGHT)
+    self.mapname:SetAnchor(relp.p2)
+    self.mapname:SetPosition(-1, -1):SetHUD(true)
+    self.mapname:SetTextColor(1,1,1)
 
     self.player:lua_MoveCallback(wrap(function(is_move, dir)
         local player = self.player
@@ -52,6 +74,7 @@ ScreenGame:lua_Init(wrap(function(scr)
     end))
 
     self:AddView(self.player)
+    self:AddView(self.mapname)
 
     self:LoadScene("newbie2")
 
@@ -63,16 +86,44 @@ ScreenGame:lua_Init(wrap(function(scr)
     self:RegKey(flux.GLFW_KEY_DOWN)
     self:RegKey(flux.GLFW_KEY_SPACE)
     self:RegKey(flux.GLFW_KEY_ENTER)
-    self:RegKey(_b'Z');
+    self:RegKey(_b'Z')
     
-    theCamera:SetFocus(self.player)
+end))
 
+ScreenGame:lua_OnPush(wrap(function(scr)
+    local self = ScreenGame
+    theCamera:SetFocus(self.player)
+end))
+
+ScreenGame:lua_AfterPush(wrap(function(scr)
+    local self = ScreenGame
+
+    Text.show('名字', '这是一句话')
+        .run(function()
+                print('custom function called.')
+            end)
+        .show('测试', '测试一下')
+    .go()
+
+end))
+
+ScreenGame:lua_OnPop(wrap(function(scr)
+    local self = ScreenGame
+    theCamera:SetFocus(nil)
+end))
+
+ScreenGame:lua_OnResize(wrap(function()
+    local self = ScreenGame
+
+    local pos = self.map:GetSize()
+    theCamera:SetSize(pos.x, pos.y)
+
+    relp.reset()
 end))
 
 ScreenGame:lua_KeyInput(wrap(function(scr, key, scancode, action, mods)
     local self = ScreenGame
 
-    --print(key, scancode, action, mods)
     if action == flux.GLFW_PRESS then
         if key == flux.GLFW_KEY_RIGHT then
             self.player:move(flux.TD_RIGHT)
@@ -82,9 +133,19 @@ ScreenGame:lua_KeyInput(wrap(function(scr, key, scancode, action, mods)
             self.player:move(flux.TD_UP)
         elseif key == flux.GLFW_KEY_DOWN then
             self.player:move(flux.TD_DOWN)
+        elseif key == flux.GLFW_KEY_ESCAPE then
+            MsgBox:Show("是否想要回到标题页面？", MsgBox.STYLE_YESNO, function(index)
+                if index == MsgBox.ON_YES then
+                    theWorld:PushScreen(ScreenStart.scr)
+                end
+            end)
         elseif key == _b'Z' or key == flux.GLFW_KEY_SPACE then
-            if self.phy:QueryViewByDir(self.player, self.player:GetDir()) then
-                print('NPC find!')
+            local v = self.phy:QueryViewByDir(self.player, self.player:GetDir())
+            if v and self.scene then
+                local info = self.scene:GetInfoFromIndex(v.index)
+                if info then
+                    Text:random_show(info.base.name, info.base.rchat)
+                end
             end
         end
     elseif action == flux.GLFW_RELEASE then

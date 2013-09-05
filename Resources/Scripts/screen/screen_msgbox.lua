@@ -115,12 +115,7 @@ end))
 
 function MsgBox:Show(text, style, callback)
 
-    local player = ScreenGame.player
-    player:AnimCancel()
-    player:SetFrame(0)
-    player:Stop()
-    thePhy:Stop(player)
-
+    Utils:PlayerStop()
 	MsgBox.style = style or MsgBox.STYLE_OK
     MsgBox.callback = callback
     MsgBox.text = text or ''

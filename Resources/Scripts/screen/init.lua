@@ -93,6 +93,7 @@ ScreenMsgBox = Screen()
 ScreenMsgBox = Screen()
 ScreenText = Screen()
 
+require('screen.utils')
 require('screen.screen_game')
 require('screen.screen_start')
 require('screen.screen_msgbox')

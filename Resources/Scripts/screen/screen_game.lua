@@ -46,16 +46,7 @@ ScreenGame:lua_Init(wrap(function(scr)
     self.player:lua_MoveCallback(wrap(function(is_move, dir)
         local player = self.player
         if not is_move then 
-            player:AnimCancel()
-            if dir == flux.TD_LEFT then
-                player:SetFrame(0)
-            elseif dir == flux.TD_RIGHT then
-                player:SetFrame(4)
-            elseif dir == flux.TD_UP then
-                player:SetFrame(12)
-            elseif dir == flux.TD_DOWN then
-                player:SetFrame(8)
-            end
+            Utils:PlayerResetAnim()
         else
             if bit.band(dir, flux.TD_LEFT) ~= 0 then
                 player:AnimCancel()
@@ -75,7 +66,6 @@ ScreenGame:lua_Init(wrap(function(scr)
 
     self:AddView(self.player)
     self:AddView(self.mapname)
-
     self:LoadScene("newbie2")
 
     -- 注册按键

@@ -102,10 +102,7 @@ end
 
 function Text.go()
     local player = ScreenGame.player
-    player:AnimCancel()
-    player:SetFrame(0)
-    player:Stop()
-    thePhy:Stop(player)
+    Utils:PlayerStop()
 
     theWorld:PushScreen(ScreenText.scr, flux.SCREEN_APPEND)
     Text:_execute()

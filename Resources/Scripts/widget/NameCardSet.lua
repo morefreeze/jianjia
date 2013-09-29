@@ -104,6 +104,6 @@ function Widget.NameCardSet:HideSelect()
 end
 
 -- 选择回调函数
-function Widget.NameCardSet:SetSelectCallbak(callback)
+function Widget.NameCardSet:SetSelectCallback(callback)
     self.sel_callback = callback
 end

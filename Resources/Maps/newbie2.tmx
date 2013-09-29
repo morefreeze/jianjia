@@ -3,6 +3,12 @@
  <tileset firstgid="1" name="ForestTiles" tilewidth="64" tileheight="64">
   <image source="ForestTiles.png" width="384" height="5440"/>
  </tileset>
+ <tileset firstgid="511" name="BuildingsTiles2" tilewidth="64" tileheight="64">
+  <image source="BuildingsTiles2.png" width="960" height="1408"/>
+ </tileset>
+ <tileset firstgid="841" name="UtilsTiles" tilewidth="64" tileheight="64">
+  <image source="UtilsTiles.png" width="384" height="960"/>
+ </tileset>
  <layer name="块层 1" width="34" height="25">
   <data encoding="base64" compression="zlib">
    eJztwwENAAAMw6D6mn9ft3ABkLBqqqqqvh/EtsPn
@@ -10,17 +16,78 @@
  </layer>
  <layer name="块层 2" width="34" height="25">
   <data encoding="base64" compression="zlib">
-   eJzFljtPVEEUx2cMuhAQo4ia+PgCRmNB5xYmfgKlUEwUE8XW9wNQWR9gpRRqoRZqoX4FtXEbGm1sNTG+l7VQSt/Ab9yZ3MPs3Ll3FxJP8sudO489/3vOmZktqrlWFO0CtEJbpL1Q9greBHgNS6ETlkXazdggDAmG4SP0wR44rJU6Akd1rV/664KV0O21m7ER7/2C1dEP++Ek/k/BaavD91dUC2NpOgbgEAzj/yycszqc5fHvz3kemTsKY4IrVsd3+GF04f8iXIJPOXw3amnfU7A6/sJ0xm/IPfIenR9MzHR8TWwPSDN1+FaMV8RYNz5W6eQpa3aS9yp8Ceh4Kdout1eZdw3GddK/VdAV+AYXu7WsWaeTp6zZmA5pTsd15t2Am3puvzQXb3kuuRi4+PtU4Kmq17EpRcct5t2GOxEdJt7t0KGSc8nFwHz3M94fq5rfsn2+UGEdxjYHdNxl3j24n6KjaHUshxVCh4vHpP3uNPLm5QHzHsKjSDxc3uV5JePhYvFE/ctH+Rt9jikdPyeMv9B4o/Xh4kEeSq4uf/L+C37DHzhG33E4EYiN2YsVr+8zvAvocPtR3lsyHi4HZVXTMWMm8NSwCM7AIAzBlsDv57VQXmQ8ylbHhNWxGJZAAVrhPIxACTbOQ0coL348XI0YHe3QYc416ITLMApj0JPiYwdjO6E3UtcmL6thjarfL19tPVKf20yNTmXsjzTbxbrd0JehYz1sUPX1IfOTtUdjtpe1+6AfWlQN30L14UzmZz46DrD2IAzo5G5vxmI6tjeoL+1uD90fofsESnnmNkvVw9wnfp9jIjKWRex3qzo5o/83ec2cx/5/pTxjeW0W1yUIkA==
+   eJzFlksvQ0EUx+d6tdIiVJF4fAEhFna6kFj5CGzYsMUCoUQRfCVs3E03bGxJRLzaWtCl9+M/Oif3mM69vW2vOMkvM3Nn0vOfc87MNCF+W4L1QyAMGrX+X9gZuDBwDppAM2jR+tXaClhlJMENmACTYM4SYh4sWIXv3HcMtIN4ADo2tPGm0jEFpsEi/C+BZaVD950QwZibjhkwC5LwvwbWlQ4yP/71Nccea3fALmNP6XgCz1IX/G+BbXDrw3e55rafkNLxAT5L/AY/L1fQeS1jZgWjT9bhpXDOSIbNxeGjw3JaXrNZjHPg3qDj1KfvEUbMME+x64aPHstpec166ajUKN78jqIYUPx1MuBQFOsYqEKHjHcERIVzR1EM5L6PMN4XBb+2ak+EWYe0QZ9+x2udfkLpaAVtTAfFI6v27UaQeaG88/uKx4NicSB+8mE/4huRt7zvCWml5ikuXvVB8UAeUlSXLxi/gjfwXtaO3TVIo/PI3zAeD8qBLQo6vuQCtBao0fIyVIUOU154PGylI6101IMGEAJhTUd/FTpMedHjQTUidURAVN5roFnTMVymDm4yL52gSxSflwdVj6jPUVmj+QDPh0lHL+gTxfXB8xPUGa1T6GaqDzKen6B00NteiXnpGCtTn9vbbno/TO8JSPlZWyk5Dfme6N+ItMdcKbx+N8fu6P/Gr92J4v9Kfub82jeSfOIM
   </data>
  </layer>
- <layer name="块层 3" width="34" height="25">
+ <layer name="层 3" width="34" height="25">
   <data encoding="base64" compression="zlib">
-   eJztlDESQEAQBPdeQ0LCUxAgcAI8FgECvMYE+wHRXLFd1fF0sivCoXAiJawcKUCpsd/AltzRYd/DntwxYH+EE7nDMAzjDRF+VhzA30rQkAbQkaEhD6DDMP7IjNtb1JV4hxu2d/UgdpzYvtT7Y3/pATv1D3w=
+   eJzt1bmSAVEYxfGrHwBjCYcZVI3A3jKMJWQ2oWUQ2r0oAgR4EZOY8g9aSlUH93bpPlW/tM+pr6q7hTAXtyaEB148wQc/AghqJh9qIs90hRDGC14RQRQxiTsSdCWRQhoZZJGDLnFHga4iSnhHGRVUUZO4o05XAx/4xBe+8YOmxB0tutrooItf9NDHQOKOIV0jjDHBFDPMsbiz44Q/KStv54x/1SOMXG+i+jbXm1jpNnbNm0uIuEv1Cv4DbEhZYIfOhrwFdjhxYscsefdWhrXC93BD99awU7hjT/fBcHyw79IFeZ8k4g==
   </data>
  </layer>
- <objectgroup name="对象层 1" width="34" height="25">
-  <object x="1219" y="63" width="190" height="195"/>
-  <object x="1279" y="1087" width="190" height="190"/>
-  <object x="1983" y="1084" width="194" height="196"/>
+ <objectgroup name="pz_123" width="34" height="25">
+  <object x="1742" y="793">
+   <polyline points="-4,-2 50,-16 102,-6 109,51 73,71 14,65 -5,58"/>
+  </object>
+  <object x="1823" y="864">
+   <polyline points="6,-2 2,79 -32,82 -64,81 -65,-4"/>
+  </object>
+  <object x="2164" y="625">
+   <polyline points="0,0 -217,1 -237,-54 -215,-106 -174,-114 -8,-109"/>
+  </object>
+  <object x="1936" y="502">
+   <polyline points="0,0 -38,-4 -74,-47 -54,-104 -14,-117 24,-105 40,-55"/>
+  </object>
+  <object x="2164" y="320">
+   <polyline points="8,-4 -303,-3 -302,-253 6,-254"/>
+  </object>
+  <object x="1832" y="1333">
+   <polyline points="0,0 -28,-36 -28,-92 17,-115 63,-100 81,-57 54,-3"/>
+  </object>
+  <object x="2169" y="1509">
+   <polyline points="0,0 -1125,2 -1126,-152 1,-144"/>
+  </object>
+  <object x="8" y="1369">
+   <polyline points="0,0 859,-2 857,134 1,138"/>
+  </object>
+  <object x="599" y="1364">
+   <polyline points="0,0 -1,-233 81,-233 81,-1"/>
+  </object>
+  <object x="473" y="1122">
+   <polyline points="0,0 0,-526 377,-525 379,-714 526,-713 525,-321 272,-317 269,7"/>
+  </object>
+  <object x="987" y="352">
+   <polyline points="0,14 -61,14 -62,-186 -45,-186 -46,-17 -1,-18"/>
+  </object>
+  <object x="1099" y="297">
+   <polyline points="0,13 -6,37 -55,37 -61,14 -111,13 -113,-55 -130,-56 -130,-101 -124,-117 -125,-175 -110,-239 64,-236 74,-278 182,-275 192,-257 203,-189 200,-153 232,-149 263,-65 256,-44 247,-44 245,11 234,9 234,-48 197,-49 214,-28 214,-1 164,-3 163,8 187,6 188,34 163,34 165,50 133,51 82,53 44,53 45,42 21,41 17,15"/>
+  </object>
+  <object x="1278" y="349">
+   <polyline points="0,0 23,1 23,32 0,32"/>
+  </object>
+  <object x="942" y="1062">
+   <polyline points="0,0 -91,1 -134,-19 -162,-97 -153,-143 -136,-175 -93,-214 -41,-225 1,-214 45,-179 67,-138 67,-85 47,-44"/>
+  </object>
+  <object x="1255" y="1590">
+   <polyline points="0,0 -153,2 -153,-44 2,-43"/>
+  </object>
+  <object x="662" y="1547">
+   <polyline points="0,0 152,1 149,46 -3,43"/>
+  </object>
+  <object x="1029" y="1282">
+   <polyline points="0,0 47,0 56,10 56,37 48,45 35,45 34,57 20,58 20,46 3,45 -3,38 -4,10"/>
+  </object>
+  <object x="1335" y="402">
+   <polyline points="0,0 60,2 58,-197 42,-197 45,-25 -1,-26"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="obj" width="34" height="25">
+  <object name="npc1" type="npc" x="1638" y="1136" width="62" height="58">
+   <properties>
+    <property name="" value=""/>
+    <property name="offsetx" value="-123"/>
+    <property name="phyindex" value="0"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
 </map>

@@ -1,53 +1,42 @@
-
+ï»¿
 scr = {}
 _b = string.byte
 package.path = package.path .. ';./Resources/Scripts/?.lua'
 package.path = package.path .. ';./Resources/Scripts/lib/?.lua'
 
 config = {
-    SCREEN_WIDTH = 1024,
-    SCREEN_HEIGHT = 768,
-    TITLE = 'ÝóÝç£ºÃ°ÏÕÖ®ÂÃ',
-    VER = 'v0.1',
+    SCREEN_WIDTH = 800,
+    SCREEN_HEIGHT = 600,
+    TITLE = 'è’¹è‘­ï¼šå†’é™©ä¹‹æ—… dev-r4',
+    VER = 'v0.01',
 }
+
+function unpack(t)
+    if type(t) == 'table' then
+        return table.unpack(t)
+    else
+        return t
+    end
+end
 
 json = require ("dkjson")
 require('class')
 require('table_ext')
 require('langs.lang')
 
-require('sys')
-require('screen_start')
-require('screen_fight')
-require('screen_about')
-require('screen_alignment_choose')
-require('screen_text')
-require('screen_character')
-require('screen_item')
-require('screen_spell')
-require('screen_game')
+require('screen.init')
+--require('sys')
 
 require('widget.widget')
 require('widget.widgetset')
-require('scene.scene_manager')
 
 function theWorld_GameInit()
-    theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqyL', 40)
-    theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqy',  25)
-    theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqyS', 15)
-	-- theSound:LoadMusic(1, "Resources/Sounds/bgm1.mid")
-	ScreenStart.new()
-	ScreenFight.new()
-	ScreenAbout.new()
-    ScreenCharacter.new()
-    ScreenItem.new()
-	ScreenGame.new()
+    theWorld:LoadFont('Resources/Fonts/wqy-microhei.ttc', 'wqy')
 	theWorld:PushScreen(ScreenStart.scr)
 end
 
-sys.init()
+--sys.init()
 theWorld:Init(config.TITLE, config.SCREEN_WIDTH, config.SCREEN_HEIGHT)
-theWorld:InitPhysics()
 theWorld_GameInit()
 theWorld:StartGame()
-sys.save()
+--sys.save()

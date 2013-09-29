@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="34" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="ForestTiles" tilewidth="64" tileheight="64">
+  <image source="ForestTiles.png" width="384" height="5440"/>
+  <terraintypes>
+   <terrain name="新地形" tile="-1"/>
+  </terraintypes>
+  <tile id="478" terrain=",,,0"/>
+ </tileset>
+ <tileset firstgid="511" name="DungeonTiles" tilewidth="64" tileheight="64">
+  <image source="DungeonTiles.png" width="384" height="2688"/>
+ </tileset>
+ <tileset firstgid="763" name="PathTiles" tilewidth="64" tileheight="64">
+  <image source="PathTiles.png" width="128" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="765" name="BuildingsTiles1" tilewidth="64" tileheight="64">
+  <image source="BuildingsTiles1.png" width="384" height="512"/>
+ </tileset>
+ <layer name="块层 3" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztllEKwyAMhj1Bz9E7zMN5vl2oe9mYDwrh509MskLZWOHD2WLyGTttK6W0zj64CbDP2JWxbSB/e9ghhpVTc5Kx0I/5zn7UgdXAizUv9PCug7U2MjbrNzKO1UPm8nit3pmVYyu6h2f+nnVrSssc5DMWz+NnOXjyowu7x+pdwV37v9RFTsvF6y3BfJGx2yDjW0UbmfNmkPFYxfyT48z6etfxCu7QXgU763GPyXB0Hs78EaIez87rw/zZGlix8Jto7mXat0Zkf806Wudm9HxgcbQ+PsO9vUJ7Ri3mhfdXZ0r2nP1Fvr0Wb5nbJpQ=
+  </data>
+ </layer>
+ <objectgroup name="对象层 1" width="34" height="25"/>
+ <layer name="块层 4" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztllsOwiAQRamJ1cTHhujiukA+3E19Vb0kNk4IMINAP7QnuS2kM5kLBGjbKLWBttAaakl/B+2hA3SELG4Ml8PFT9AcX10XN4bLSY0vwQW6QjfoXqeEiKd9YIwNtKo0Vgm+tU+ZowE6F/DhW/uUORqhRwEfPkL7Y25y90eXGG8C7W/oBO1Yjdz6EgypM0e9hTy4tTq9FaLU2WXRER8cKWdXL/ChI985j4MwVwe8xOZUkzfnY1SfsRjS9on6mOrH5pTmSpDE9U6/xn0U8vyv/zShe+RX7uuFPF4RWji/
+  </data>
+ </layer>
+ <layer name="块层 3" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlskKgDAMRFvBBVz+/0/dl/EWxJLURnuwD0dQ28yAIdQYnv28WVxQZgUbhNC6EnKsK6ASqhRz0LoSaqxroBbqFHPQuhqM0ATN0KJT8hFv9Y8vGv3TQ0NgDp/+cfmt0Mb4aGTl/CQekqyhfOGRSCQSVzTnbIh3zBn49/kbswcof/sP9GzrOu/6vr/7xj0fDuA8tA==
+  </data>
+ </layer>
+ <layer name="块层 4" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlF0KgzAQhF2hVbD2Qex5vP9VegH7o20/H6QW3JaV2CDswOdDSGYmWTBJXC6Xa5vKII+UOaVawfMX3zKtXqHuUUA9IaSXhRM08vZa6jN6bV3n2AVcH2rhErsE6uERIfcKN7hDp+xp/9DjOXz4TwikMt+tD5inzX1H9h4yyEXvFkra3AtyDlDCUfRu2vys65Yzc920N7KuLz0z6gUShTIn
+  </data>
+ </layer>
+</map>

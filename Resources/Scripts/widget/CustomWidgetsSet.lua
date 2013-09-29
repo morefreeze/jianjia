@@ -127,6 +127,6 @@ function Widget.CustomWidgetsSet:HideSelect()
 end
 
 -- 选择回调函数
-function Widget.CustomWidgetsSet:SetSelectCallbak(callback)
+function Widget.CustomWidgetsSet:SetSelectCallback(callback)
     self.sel_callback = callback
 end

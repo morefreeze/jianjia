@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="34" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="ForestTiles" tilewidth="64" tileheight="64">
+  <image source="ForestTiles.png" width="384" height="5440"/>
+  <terraintypes>
+   <terrain name="新地形" tile="-1"/>
+  </terraintypes>
+  <tile id="478" terrain=",,,0"/>
+ </tileset>
+ <tileset firstgid="511" name="DungeonTiles" tilewidth="64" tileheight="64">
+  <image source="DungeonTiles.png" width="384" height="2688"/>
+ </tileset>
+ <tileset firstgid="763" name="PathTiles" tilewidth="64" tileheight="64">
+  <image source="PathTiles.png" width="128" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="765" name="BuildingsTiles1" tilewidth="64" tileheight="64">
+  <image source="BuildingsTiles1.png" width="384" height="512"/>
+ </tileset>
+ <tileset firstgid="813" name="TreeTiles1" tilewidth="64" tileheight="64">
+  <image source="TreeTiles1.png" width="768" height="832"/>
+ </tileset>
+ <tileset firstgid="969" name="ShanTile1" tilewidth="64" tileheight="64">
+  <image source="ShanTile1.png" width="1024" height="1472"/>
+ </tileset>
+ <layer name="块层 1" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlT0OwyAUgzlBp67dWdoLlBPkVBy9qgSS5frx95KmQweLBEj8PUNCDiE8QbmIr5VaY14dwZGN948+h/OjMw+rtiz6cP7bN5XrtMgxwrk1OKpvAnnzUPVvxMH5s79imN0XKgdmiKRErWfPtzg4I/SK1HqkOGoOalzdx049Kxy4Fqv7eg9hDheSxdFju4FUH4/X97F/jwN1L+2j4dVTLu0sB/et+rN6HL1MLF2NNWrx83eDta9y7LFvz/hmkEFxHKF6Nqg6RxnwXPH+W5FnNI8UPjnOWpvq7z3nrBpn56o8vy30P3p9/vpdvQBZM8rT
+  </data>
+ </layer>
+ <layer name="块层 2" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzlVn8LwkAI3YLaYitYre//MdevVR50JKKe7o7906MXdfN8Kkytqh9uwDvwAXx+z2bgC9lMwKvwjP632s/kzjt81fABbuqKBaelwWsfsAXtHbABtkIcATFHrn4l0IF2DzwAj0ocMUdL/UpCyttav1KQ8rbWrxTWzlvC2nn/Ixpgi5jrZ6/4ps+xzSlDm/MzIE3O94BiaTL1cX6anw44EvYGm9EQA3cHM/b48PvC3D8Te2yD+6MFeGZS4Dmm2XHA/dGCqJXS8c5W3B8lcJpLZrgG3B8laJre+peAZUfL9WcBN2tz9h9tZ9H8crM2tf94/Vli5GZtag/w+rPEyCG1ByzdV6z7hfSe0HPvvjIJfiQ9qXd633F6Fu5/AHNVcxI=
+  </data>
+ </layer>
+ <layer name="块层 3" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzFlsdRAzEYRndhiTaYi5mBdQOEBggNEBogNEBogNAAoQFCA4QGCA04NODQgA0XuIAD4XHwjEaWVhq86/1nni+/pO9pRlor2+84OchDAVSVch1nwlX32lWHBjShpZgj9+V1i2SXoAwVjUeasZMGj5+/H8a40Od2zpH78rpVsmvwAq8aD5+xGYPHAP1BGIJht3OO3JfXrZPdgCa0NB42lWC9JIzBuMLZ1B/xHGcUEpD0/u/RbU2RPQ0+ZAweqrMWVs2QPQtzMG/wUJ21sGqB7EVYgmWDh+qshVUrZK/CGqwbPExnrZvaIHsTtmA7xnO6Q/Yu7MF+jB4HZB/CERzH6HFC9imcwXmMHhdkX8IVXMfocUP2LdzBfYweD2Q/whM8azze4D1ijyzZOchDQePxAZ8RexTJLkEZKhqPL/iO2KNKds3rzZ5tqhd7jrqC3q82b9tUSP9VQe9XXU/0S1t42Own6P0q9sT7L/r5Fh42b3Wxgr414l1o+9l+l2ze6rosueS7II79BbUAVBM=
+  </data>
+ </layer>
+ <layer name="块层 4" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt1rENADAIA0HvvzBpggILpAQXf5J7JLsgJUXlaN+t5PYRAABgDD+IF/rAj8M2mss2HoyiDrM=
+  </data>
+ </layer>
+ <layer name="块层 5" width="34" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztzukykGEAhuFvxvGUdqVdlEJJexKpiCjatKgoS4kKUdpIIklU2qRFhMNyncQ70zTfM3P9feaOon9jCxKiaCGJLGIxS1jKMpazgiRWJoTrWOU7mdWsYS3rWM8GNpLCJlIDdqT53swW0tnKNjLIJIvt7CA7YMdO3znsYjd72Ms+9nOAg+RyKGBHnu/D5FPAEQo5yjGOU0QxJwJ2lPgu5SRllHOK01RQyRnOci5gx3nfF6jiIpe4zBWquco1rlMTsKPW9w1uUkc9DTRyi9s0cYfmgB0tvu9yj/u00kY7D+igk4c8CtjR5fsxT3jKM57TTQ8v6OUlfQE7XvnuZ4DXDPKGId4yzDtGGA3Y8d73Bz4yxic+84WvfGOc70wE7Pjh+ye/+M0kf5himr/MMMtcwI548eLFi/d/bR5uzkx7
+  </data>
+ </layer>
+</map>
